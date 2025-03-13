@@ -54,16 +54,28 @@
 		}else{
 			console.log( $("areaTxt").length );
 			
-			$("#areaAddBtn").after(
-				"<div class='col-2 col-4-small' id='areaTxt'>"+
-					$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
-				"</div>");
+			let html = '';
+			if($("#guCode").val() === ''){
+				//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+"</div>";
+				html = "<li>"+$("#sidoSelect :selected").text()+" <a href='javascript:deleteSido();'>X</a></li>";
+				$("#sidoAddUl").append(html);
+			}else{
+				//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</div>";
+				html = "<li>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</li>";
+				$("#gugunAddUl").append(html);
+			}
+			
+			//$("#areaAddBtn").after(html);
+			
 		}
 		
 		
 		
 	}
 	
+	function deleteSido(){
+		console.log('delete');
+	}
 	</script>
 			
 	</head>
@@ -139,6 +151,19 @@
 											<ul class="actions">
 												<li><input type="button" value="지역추가하기" onclick="areaAdd();" /></li>
 											</ul>
+										</div>
+										
+										<div class="col-4 col-12-small">
+											<ul id="sidoAddUl">
+											</ul>
+										</div>
+										
+										<div class="col-4 col-12-small">
+											<ul id="gugunAddUl">
+											</ul>
+										</div>
+										
+										<div class="col-4 col-12-small">
 										</div>
 										
 										<!-- 일자선택 -->
