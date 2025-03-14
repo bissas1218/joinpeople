@@ -55,14 +55,49 @@
 			console.log( $("areaTxt").length );
 			
 			let html = '';
-			if($("#guCode").val() === ''){
-				//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+"</div>";
-				html = "<li>"+$("#sidoSelect :selected").text()+" <a href='javascript:deleteSido();'>X</a></li>";
-				$("#sidoAddUl").append(html);
-			}else{
-				//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</div>";
-				html = "<li>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</li>";
-				$("#gugunAddUl").append(html);
+			if($("#guCode").val() === ''){ // 시도입력
+				console.log('li len:'+ $("#sidoAddUl li").length);
+				let chk = true;
+				// 시도 중복체크
+				if($("#sidoAddUl li").length > 0){
+				
+					$('#sidoAddUl li').each(function(index) {
+		                console.log($(this).attr('id')+', Index: ' + index + ', Text: ' + $(this).text());
+		                if( $("#sidoSelect").val() === $(this).attr('id') ){
+		                	alert('이미 입력된 시도입니다.');
+		                	chk = false;
+		                //	break;
+		                }
+		            });
+				}
+				
+				if(chk){
+					//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+"</div>";
+					html = "<li id='"+$("#sidoSelect :selected").val()+"'>"+$("#sidoSelect :selected").text()+" <a href='javascript:deleteSido("+$("#sidoSelect :selected").val()+");'>X</a> "+
+					"<input type='button' value='삭제' onclick='areaAdd();' /></li>";
+					$("#sidoAddUl").append(html);
+				}
+				
+				
+			}else{	// 시군입력
+				
+				let chk = true;
+				if($("#gugunAddUl li").length > 0){
+					
+					$('#gugunAddUl li').each(function(index) {
+						if( $("#sidoSelect").val() + '-' + $("#guCode").val() === $(this).attr('id') ){
+							alert('이미 입력된 구군입니다.');
+							chk = false;
+						}
+					});
+				}
+				
+				if(chk){
+					//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</div>";
+					html = "<li id='"+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+" <a href='javascript:deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");'>X</a></li>";
+					$("#gugunAddUl").append(html);
+				}
+				
 			}
 			
 			//$("#areaAddBtn").after(html);
@@ -73,9 +108,11 @@
 		
 	}
 	
-	function deleteSido(){
-		console.log('delete');
+	function deleteSido(id){
+		console.log('delete:'+id);
+		$("#"+id).remove();
 	}
+	
 	</script>
 			
 	</head>
