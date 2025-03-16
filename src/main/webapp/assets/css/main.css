@@ -1681,6 +1681,26 @@ input[type="radio"] + label:before {
 		}
 
 /* Button */
+#small-btn {
+	-webkit-appearance: none;
+		display: inline-block;
+		text-decoration: none;
+		cursor: pointer;
+		border: 0;
+		border-radius: 5px;
+		background: #d52349;
+		color: #fff !important;
+		font-weight: 700;
+		outline: 0;
+		font-size: 1.0em;
+		padding: 0.2em 0.8em 0em 0.8em;
+		text-align: center;
+		-moz-transition: background-color .25s ease-in-out;
+		-webkit-transition: background-color .25s ease-in-out;
+		-ms-transition: background-color .25s ease-in-out;
+		transition: background-color .25s ease-in-out;
+		margin-left:0.5em;
+}
 
 	input[type="button"],
 	input[type="submit"],
@@ -1706,6 +1726,8 @@ input[type="radio"] + label:before {
 		transition: background-color .25s ease-in-out;
 		margin-left:0.5em;
 	}
+	
+
 
 		input[type="button"]:hover,
 		input[type="submit"]:hover,
@@ -1811,6 +1833,11 @@ input[type="radio"] + label:before {
 			padding-left: 0.5em;
 		}
 
+	#sidoAddUl li, #gugunAddUl li {
+		padding: 0.4em 0 0.4em 0;
+		text-align:left;
+	}
+	
 	ol {
 		list-style: decimal;
 		padding-left: 1.25em;

@@ -20,7 +20,7 @@
 	
 	function sidoChange() {
 		
-		console.log( $("#sidoSelect").val() );
+	//	console.log( $("#sidoSelect").val() );
 		
 		/* 구에 데이터삽입 */
 		$.ajax({
@@ -35,7 +35,7 @@
 				$("#guCode").append("<option value=''>전체시군선택</option>");
 				
 				for(var i=0; i<data.guList.length; i++){
-					//console.log(data.guList[i].name);
+				//	console.log(data.guList[i].name);
 					$("#guCode").append("<option value='"+data.guList[i].code+"'>"+data.guList[i].name+"</option>");
 				}
 			},
@@ -46,7 +46,7 @@
 	} 
 	
 	function areaAdd(){
-		console.log( $("#sidoSelect").val() + ', '+ $("#guCode").val());
+	//	console.log( $("#sidoSelect").val() + ', '+ $("#guCode").val());
 		
 		if($("#sidoSelect").val() === ''){
 			alert('시도를 선택하세요!');
@@ -72,9 +72,8 @@
 				}
 				
 				if(chk){
-					//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+"</div>";
-					html = "<li id='"+$("#sidoSelect :selected").val()+"'>"+$("#sidoSelect :selected").text()+" <a href='javascript:deleteSido("+$("#sidoSelect :selected").val()+");'>X</a> "+
-					"<input type='button' value='삭제' onclick='areaAdd();' /></li>";
+					html = "<li id='"+$("#sidoSelect :selected").val()+"'>"+$("#sidoSelect :selected").text()+
+					"<input type='button' value='삭제' onclick='deleteSido("+$("#sidoSelect :selected").val()+");' id='small-btn' /></li>";
 					$("#sidoAddUl").append(html);
 				}
 				
@@ -93,8 +92,9 @@
 				}
 				
 				if(chk){
-					//html = "<div class='col-2 col-4-small' id='areaTxt'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+"</div>";
-					html = "<li id='"+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+" <a href='javascript:deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");'>X</a></li>";
+					html = "<li id='"+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
+					//" <a href='javascript:deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");'>X</a></li>";
+					"<input type='button' value='삭제' onclick='deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");' id='small-btn' /></li>";
 					$("#gugunAddUl").append(html);
 				}
 				
@@ -190,31 +190,40 @@
 											</ul>
 										</div>
 										
-										<div class="col-4 col-12-small">
+										<div class="col-3 col-12-small">
 											<ul id="sidoAddUl">
 											</ul>
 										</div>
 										
-										<div class="col-4 col-12-small">
+										<div class="col-3 col-12-small">
 											<ul id="gugunAddUl">
 											</ul>
 										</div>
 										
-										<div class="col-4 col-12-small">
+										<div class="col-6 col-12-small">
 										</div>
 										
 										<!-- 일자선택 -->
 										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인년도" maxlength="4" />
+											<select>
+												<option>조인년도</option>
+												<option>2025년</option>
+											</select>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인월" />
+											<select>
+												<option>조인월</option>
+												<option>1월</option>
+											</select>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인일" />
+											<select>
+												<option>조인일</option>
+												<option>1일</option>
+											</select>
 										</div>
 										
-										<!-- Break -->
+										<!-- Break 
 										<div class="col-2 col-4-small">
 											<input type="checkbox" id="demo-copy" name="demo-copy">
 											<label for="demo-copy">충주시</label>
@@ -254,7 +263,7 @@
 										<div class="col-2 col-12-small"></div>
 										<div class="col-2 col-12-small"></div>
 										<div class="col-2 col-12-small"></div>
-										
+										-->
 										<!-- Break -->
 										<div class="col-2 col-4-small">
 											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
