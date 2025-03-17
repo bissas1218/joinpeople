@@ -15,8 +15,21 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
+		<script src="/assets/js/jquery.min.js"></script>
 
 	<script type="text/javascript">
+	
+	$(document).ready(function() {
+
+		$('#anyone').change(function() {
+			if(this.checked){
+				$("#pwd").attr("disabled", true);
+			}else{
+				$("#pwd").attr("disabled", false);
+			}
+		});
+		
+	});
 	
 	function sidoChange() {
 		
@@ -132,6 +145,7 @@
 								<li><a href="left-sidebar.html">로그인</a></li>
 								<li><a href="right-sidebar.html">정보수정</a></li>
 								<li><a href="no-sidebar.html">공지사항</a></li>
+								<li><a href="no-sidebar.html">이용안내</a></li>
 								<li><a href="no-sidebar.html">내방관리</a></li>
 								<li><a href="no-sidebar.html">문의하기</a></li>
 								<li><a href="no-sidebar.html">탈퇴하기</a></li>
@@ -141,7 +155,7 @@
 					<!-- Intro -->
 						<section id="intro" class="container">
 						
-							<form method="post" action="">
+							<form method="post" action="joinInsert" name="joinInsertFrm" id="joinInsertFrm" >
 							
 							<div class="col-4 col-12-medium">
 							
@@ -151,9 +165,18 @@
 									
 									    <!-- 찾기 -->
 										<div class="col-12 col-12-small">
-											<input type="text" name="name" id="name" placeholder="방제목" />
+											<input type="text" name="joinName" id="joinName" placeholder="방제목" maxlength="50" />
+											<p id="joinNameWarning" class="warning" style="display:none;">방제목을 입력하세요!</p> 
 										</div>
-										 
+										
+										<div class="col-6 col-6-small">
+											<input type="password" name="pwd" id="pwd" placeholder="비밀번호" disabled="disabled"/>
+										</div> 
+										<div class="col-6 col-6-small">
+											<input type="checkbox" id="anyone" name="anyone" checked="checked">
+											<label for="anyone">누구나</label>
+										</div>
+										
 										<!-- 지역 -->
 										<div class="col-4 col-12-small">
 											<select onchange="sidoChange();" id="sidoSelect" name="sidoSelect">
@@ -213,96 +236,122 @@
 										<div class="col-2 col-4-small">
 											<select>
 												<option>조인월</option>
-												<option>1월</option>
+												<option value="1">1월</option>
+												<option value="2">2월</option>
+												<option value="3">3월</option>
+												<option value="4">4월</option>
+												<option value="5">5월</option>
+												<option value="6">6월</option>
+												<option value="7">7월</option>
+												<option value="8">8월</option>
+												<option value="9">9월</option>
+												<option value="10">10월</option>
+												<option value="11">11월</option>
+												<option value="12">12월</option>
 											</select>
 										</div>
 										<div class="col-2 col-4-small">
 											<select>
 												<option>조인일</option>
-												<option>1일</option>
+												<option value="1">1일</option>
+												<option value="2">2일</option>
+												<option value="3">3일</option>
+												<option value="4">4일</option>
+												<option value="5">5일</option>
+												<option value="6">6일</option>
+												<option value="7">7일</option>
+												<option value="8">8일</option>
+												<option value="9">9일</option>
+												<option value="10">10일</option>
+												<option value="11">11일</option>
+												<option value="12">12일</option>
+												<option value="13">13일</option>
+												<option value="14">14일</option>
+												<option value="15">15일</option>
+												<option value="16">16일</option>
+												<option value="17">17일</option>
+												<option value="18">18일</option>
+												<option value="19">19일</option>
+												<option value="20">20일</option>
+												<option value="21">21일</option>
+												<option value="22">22일</option>
+												<option value="23">23일</option>
+												<option value="24">24일</option>
+												<option value="25">25일</option>
+												<option value="26">26일</option>
+												<option value="27">27일</option>
+												<option value="28">28일</option>
+												<option value="29">29일</option>
+												<option value="30">30일</option>
+												<option value="31">31일</option>
 											</select>
 										</div>
 										
-										<!-- Break 
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-copy" name="demo-copy">
-											<label for="demo-copy">충주시</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">제천시</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">보은군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">옥천군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">영동군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">진천군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">괴산군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">음성군</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">단양군</label>
-										</div>
-										<div class="col-2 col-12-small"></div>
-										<div class="col-2 col-12-small"></div>
-										<div class="col-2 col-12-small"></div>
-										-->
 										<!-- Break -->
 										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-											<label for="demo-priority-low">성별무관</label>
+											<input type="radio" id="gender-not" name="gender" checked>
+											<label for="gender-not">성별무관</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-normal" name="demo-priority">
-											<label for="demo-priority-normal">남성</label>
+											<input type="radio" id="gender-male" name="gender">
+											<label for="gender-male">남성</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-high" name="demo-priority">
-											<label for="demo-priority-high">여성</label>
+											<input type="radio" id="gender-female" name="gender">
+											<label for="gender-female">여성</label>
 										</div>
 										
 										<!-- Break -->
 										<div class="col-3 col-6-small">
-											<input type="radio" id="demo-priority-low2" name="demo-priority2" checked>
-											<label for="demo-priority-low2">18홀</label>
+											<input type="radio" id="holenum-18" name="holenum" checked>
+											<label for="holenum-18">18홀</label>
 										</div>
 										<div class="col-3 col-6-small">
-											<input type="radio" id="demo-priority-normal2" name="demo-priority2">
-											<label for="demo-priority-normal2">9홀</label>
+											<input type="radio" id="holenum-9" name="holenum">
+											<label for="holenum-9">9홀</label>
 										</div>
 										
-										
-										<!--
-										<div class="col-12">
-											<input type="text" name="subject" id="subject" placeholder="Subject" />
+										<!-- Break -->
+										<div class="col-2 col-4-small">
+											<input type="radio" id="teeup-time-1" name="teeup-time" checked>
+											<label for="teeup-time-1">1부</label>
 										</div>
-										<div class="col-12">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
+										<div class="col-2 col-4-small">
+											<input type="radio" id="teeup-time-2" name="teeup-time">
+											<label for="teeup-time-2">2부</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="radio" id="teeup-time-3" name="teeup-time">
+											<label for="teeup-time-3">3부</label>
 										</div>
 										
-										<div class="col-12">
-											<ul class="actions">
-												<li><input type="submit" value="조회하기" /></li>
-												<li><input type="reset" value="Clear Form" class="alt" /></li>
-											</ul>
-										</div>-->
+										<div class="col-3 col-6-small">
+											<input type="text" name="start-greenfee" id="start-greenfee" placeholder="시작그린피" maxlength="11" />
+										</div>
+										<div class="col-3 col-6-small">
+										원 부터
+										</div>
+										<div class="col-3 col-6-small">
+											<input type="text" name="end-greenfee" id="end-greenfee" placeholder="종료그린피" maxlength="11" />
+										</div>
+										<div class="col-3 col-6-small">
+										원 까지
+										</div>
+										
+										<!-- Break -->
+										<div class="col-2 col-4-small">
+											<input type="radio" id="people-num-4" name="people-num" checked>
+											<label for="people-num-4">4명</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="radio" id="people-num-3" name="people-num">
+											<label for="people-num-3">3명</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="radio" id="people-num-2" name="people-num">
+											<label for="people-num-2">2명</label>
+										</div>
+										
 									</div>
 								</section>
 								
@@ -310,7 +359,7 @@
 							
 							<footer>
 								<ul class="actions">
-									<li><a href="#" class="button large">추가하기</a></li>
+									<li><a href="javascript:addSubmit();" class="button large">추가하기</a></li>
 									<li><a href="/join-list.jsp" class="button alt large">취소하기</a></li>
 								</ul>
 							</footer>
@@ -326,114 +375,7 @@
 				<section id="footer">
 					<div class="container">
 						<div class="row">
-							<div class="col-12 col-12-medium">
-								<section>
-									<header>
-										<h2>2025년 3월</h2>
-									</header>
-									
-									<ul class="dates">
-									<c:forEach var="test" begin="0" end="5">
-										<li>
-											<span class="date">3 <strong>27</strong></span>
-											<h3><a href="#">[비밀방] 충남 예산시, 세종시, 대전시, 충북 보은시, 경북 상주시, 경북 문경시, 충북 청주시</a></h3>
-											<p>
-												시간 05시~13시, 그린피 30,000~120,000원, 타수무관, 성별무관, 현재3명, 18홀
-												<input type="password" name="pwd" id="pwd" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
-												<a href="#" class="button">참여하기</a>
-											</p>
-										</li>
-									</c:forEach>
-									
-									</ul>
-								</section>
-							</div>
-							<!-- 
-							<div class="col-4 col-12-medium">
-								<section>
-									<header>
-										<h2>What's this all about?</h2>
-									</header>
-									<a href="#" class="image featured"><img src="images/pic10.jpg" alt="" /></a>
-									<p>
-										This is <strong>Dopetrope</strong> a free, fully responsive HTML5 site template by
-										<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a> It's released for free under
-										the <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for any personal or commercial project &ndash; just don't forget to credit us!
-									</p>
-									<footer>
-										<ul class="actions">
-											<li><a href="#" class="button">Find out more</a></li>
-										</ul>
-									</footer>
-								</section>
-							</div>
-							 -->
-							 <!-- 
-							<div class="col-4 col-6-medium col-12-small">
-								<section>
-									<header>
-										<h2>Tempus consequat</h2>
-									</header>
-									<ul class="divided">
-										<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-										<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-										<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-										<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-										<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-										<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-									</ul>
-								</section>
-							</div>
-							 -->
-							 <!-- 
-							<div class="col-4 col-6-medium col-12-small">
-								<section>
-									<header>
-										<h2>Ipsum et phasellus</h2>
-									</header>
-									<ul class="divided">
-										<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-										<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-										<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-										<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-										<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-										<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-4 col-12-medium">
-								<section>
-									<header>
-										<h2>Vitae tempor lorem</h2>
-									</header>
-									<ul class="social">
-										<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
-										<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
-										<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
-										<li><a class="icon brands fa-tumblr" href="#"><span class="label">Tumblr</span></a></li>
-										<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
-									</ul>
-									<ul class="contact">
-										<li>
-											<h3>Address</h3>
-											<p>
-												Untitled Incorporated<br />
-												1234 Somewhere Road Suite<br />
-												Nashville, TN 00000-0000
-											</p>
-										</li>
-										<li>
-											<h3>Mail</h3>
-											<p><a href="#">someone@untitled.tld</a></p>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<p>(800) 000-0000</p>
-										</li>
-									</ul>
-								</section>
-							</div>
-							 -->
+							
 							<div class="col-12">
 
 								<!-- Copyright -->
@@ -450,8 +392,55 @@
 
 		</div>
 
+<script type="text/javascript">
+
+
+
+
+
+function addSubmit(){
+	
+	$("#joinNameWarning").hide();
+	
+	if($("#joinName").val() === ''){
+		$("#joinNameWarning").show();
+		$("#joinName").focus();
+	}else{
+		alert('저장완료');
+		//$("#joinInsertFrm").submit();	
+	}
+	
+}
+
+
+const input = document.querySelector('#start-greenfee');
+input.addEventListener('keyup', function(e) {
+  let value = e.target.value;
+  value = Number(value.replaceAll(',', ''));
+  if(isNaN(value)) {
+    input.value = 0;
+  }else {
+    const formatValue = value.toLocaleString('ko-KR');
+    input.value = formatValue;
+  }
+})
+
+const input2 = document.querySelector('#end-greenfee');
+input2.addEventListener('keyup', function(e) {
+  let value = e.target.value;
+  value = Number(value.replaceAll(',', ''));
+  if(isNaN(value)) {
+    input2.value = 0;
+  }else {
+    const formatValue = value.toLocaleString('ko-KR');
+    input2.value = formatValue;
+  }
+})
+
+</script>
+
 		<!-- Scripts -->
-			<script src="/assets/js/jquery.min.js"></script>
+			
 			<script src="/assets/js/jquery.dropotron.min.js"></script>
 			<script src="/assets/js/browser.min.js"></script>
 			<script src="/assets/js/breakpoints.min.js"></script>

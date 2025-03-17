@@ -1563,6 +1563,12 @@ input[type="radio"] + label:before {
 		border: 0;
 	}
 
+	form .warning {
+		color:red;
+		font-size:1.0em;
+		text-align:left;
+	}
+	
 	.dates .small-input
 	 {
 		border: 0;
