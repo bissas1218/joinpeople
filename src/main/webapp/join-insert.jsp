@@ -170,7 +170,8 @@
 										</div>
 										
 										<div class="col-6 col-6-small">
-											<input type="password" name="pwd" id="pwd" placeholder="비밀번호" disabled="disabled"/>
+											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(숫자만 최소4자리 부터 8자리까지)" disabled="disabled"/>
+											<p id="pwdWarning" class="warning" style="display:none;"></p> 
 										</div> 
 										<div class="col-6 col-6-small">
 											<input type="checkbox" id="anyone" name="anyone" checked="checked">
@@ -401,10 +402,24 @@
 function addSubmit(){
 	
 	$("#joinNameWarning").hide();
+	$("#pwdWarning").hide();
+	//console.log( $("#anyone").prop("checked") );
 	
 	if($("#joinName").val() === ''){
 		$("#joinNameWarning").show();
 		$("#joinName").focus();
+	}else if(!$("#anyone").prop("checked") && $("#pwd").val() === ''){
+		$("#pwdWarning").text('비밀번호를 입력하세요!');
+		$("#pwdWarning").show();
+		$("#pwd").focus();
+	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 8)){
+		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 8자리 입니다!');
+		$("#pwdWarning").show();
+		$("#pwd").focus();
+	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 8)){
+		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 8자리 입니다!');
+		$("#pwdWarning").show();
+		$("#pwd").focus();
 	}else{
 		alert('저장완료');
 		//$("#joinInsertFrm").submit();	
