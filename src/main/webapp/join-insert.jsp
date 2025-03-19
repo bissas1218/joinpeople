@@ -29,6 +29,11 @@
 			}
 		});
 		
+		$("#pwd").keyup(function() {
+			$("#pwdWarning").text('비밀번호 입력중...');
+			$("#pwdWarning").show();
+		});
+		
 	});
 	
 	function sidoChange() {
@@ -173,8 +178,8 @@
 											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(숫자만 최소4자리 부터 8자리까지)" disabled="disabled"/>
 											<p id="pwdWarning" class="warning" style="display:none;"></p> 
 										</div> 
-										<div class="col-6 col-6-small">
-											<input type="checkbox" id="anyone" name="anyone" checked="checked">
+										<div class="col-6 col-6-small" style="text-align:left;">
+											<input type="checkbox" id="anyone" name="anyone" checked="checked" >
 											<label for="anyone">누구나</label>
 										</div>
 										
@@ -327,13 +332,13 @@
 										</div>
 										
 										<div class="col-3 col-6-small">
-											<input type="text" name="start-greenfee" id="start-greenfee" placeholder="시작그린피" maxlength="11" />
+											<input type="text" name="start-greenfee" id="start-greenfee" placeholder="희망시작그린피" maxlength="11" />
 										</div>
 										<div class="col-3 col-6-small">
 										원 부터
 										</div>
 										<div class="col-3 col-6-small">
-											<input type="text" name="end-greenfee" id="end-greenfee" placeholder="종료그린피" maxlength="11" />
+											<input type="text" name="end-greenfee" id="end-greenfee" placeholder="희망종료그린피" maxlength="11" />
 										</div>
 										<div class="col-3 col-6-small">
 										원 까지
@@ -351,6 +356,10 @@
 										<div class="col-2 col-4-small">
 											<input type="radio" id="people-num-2" name="people-num">
 											<label for="people-num-2">2명</label>
+										</div>
+										
+										<div class="col-12 col-12-small">
+										<textarea rows="" cols="" placeholder="조인 설명글"></textarea>
 										</div>
 										
 									</div>
