@@ -30,7 +30,17 @@
 		});
 		
 		$("#pwd").keyup(function() {
-			$("#pwdWarning").text('비밀번호 입력중...');
+			
+			let pwd = $("#pwd").val();
+			console.log(pwd.search(/[0-9]/g));
+			if(pwd.length < 4 || pwd.length > 8){
+				$("#pwdWarning").text('비밀번호는 최소 4개부터 8개까지의 숫자입니다.');	
+			}else if(pwd.search(/\s/) != -1){
+				$("#pwdWarning").text('비밀번호는 공백 없이 입력해주세요!');
+			}else{
+				$("#pwdWarning").text('올바른 비밀번호 입니다.');
+			}
+			
 			$("#pwdWarning").show();
 		});
 		
@@ -175,7 +185,7 @@
 										</div>
 										
 										<div class="col-6 col-6-small">
-											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(숫자만 최소4자리 부터 8자리까지)" disabled="disabled"/>
+											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(숫자만 최소4자리 부터 8자리까지)" disabled="disabled" maxlength="8" />
 											<p id="pwdWarning" class="warning" style="display:none;"></p> 
 										</div> 
 										<div class="col-6 col-6-small" style="text-align:left;">
