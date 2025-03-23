@@ -79,6 +79,7 @@
 	function areaAdd(){
 	//	console.log( $("#sidoSelect").val() + ', '+ $("#guCode").val());
 		$("#sidoWarning").hide();
+		$("#guWarning").hide();
 		
 		if($("#sidoSelect").val() === ''){
 			$("#sidoWarning").text('시도를 선택하세요!');
@@ -86,7 +87,7 @@
 		//	alert('시도를 선택하세요!');
 			$("#sidoSelect").focus();
 		}else{
-			console.log( $("areaTxt").length );
+		//	console.log( $("areaTxt").length );
 			
 			let html = '';
 			if($("#guCode").val() === ''){ // 시도입력
@@ -98,7 +99,9 @@
 					$('#sidoAddUl li').each(function(index) {
 		                console.log($(this).attr('id')+', Index: ' + index + ', Text: ' + $(this).text());
 		                if( $("#sidoSelect").val() === $(this).attr('id') ){
-		                	alert('이미 입력된 시도입니다.');
+		                	//alert('이미 입력된 시도입니다.');
+		                	$("#sidoWarning").text('이미 입력된 시도입니다!');
+		        			$("#sidoWarning").show();
 		                	chk = false;
 		                //	break;
 		                }
@@ -119,7 +122,9 @@
 					
 					$('#gugunAddUl li').each(function(index) {
 						if( $("#sidoSelect").val() + '-' + $("#guCode").val() === $(this).attr('id') ){
-							alert('이미 입력된 구군입니다.');
+							//alert('이미 입력된 구군입니다.');
+							$("#guWarning").text('이미 입력된 구군입니다!');
+		        			$("#guWarning").show();
 							chk = false;
 						}
 					});
@@ -143,7 +148,10 @@
 	}
 	
 	function deleteSido(id){
-		console.log('delete:'+id);
+		//console.log('delete:'+id);
+		$("#sidoWarning").hide();
+		$("#guWarning").hide();
+		
 		$("#"+id).remove();
 	}
 	
@@ -228,6 +236,7 @@
 											<select name="guCode" id="guCode">
 												<option value="">전체시군선택</option>
 											</select>
+											<p id="guWarning" class="warning" style="display:none;"></p>
 										</div>
 										
 										<div class="col-3 col-12-small" id="areaAddBtn">
