@@ -32,12 +32,14 @@
 		$("#pwd").keyup(function() {
 			
 			let pwd = $("#pwd").val();
-			console.log(pwd.search(/[0-9]/g));
-			if(pwd.length < 4 || pwd.length > 8){
-				$("#pwdWarning").text('비밀번호는 최소 4개부터 8개까지의 숫자입니다.');	
+			$("form .warning").css("color", 'red');
+			//console.log( pwd.search(/[a-z]/ig) );
+			if(pwd.length < 4 || pwd.length > 20){
+				$("#pwdWarning").text('비밀번호는 최소 4개부터 20개 까지입니다.');	
 			}else if(pwd.search(/\s/) != -1){
 				$("#pwdWarning").text('비밀번호는 공백 없이 입력해주세요!');
 			}else{
+				$("form .warning").css("color", 'blue');
 				$("#pwdWarning").text('올바른 비밀번호 입니다.');
 			}
 			
@@ -49,6 +51,7 @@
 	function sidoChange() {
 		
 	//	console.log( $("#sidoSelect").val() );
+		$("#sidoWarning").hide();
 		
 		/* 구에 데이터삽입 */
 		$.ajax({
@@ -75,9 +78,12 @@
 	
 	function areaAdd(){
 	//	console.log( $("#sidoSelect").val() + ', '+ $("#guCode").val());
+		$("#sidoWarning").hide();
 		
 		if($("#sidoSelect").val() === ''){
-			alert('시도를 선택하세요!');
+			$("#sidoWarning").text('시도를 선택하세요!');
+			$("#sidoWarning").show();
+		//	alert('시도를 선택하세요!');
 			$("#sidoSelect").focus();
 		}else{
 			console.log( $("areaTxt").length );
@@ -185,7 +191,7 @@
 										</div>
 										
 										<div class="col-6 col-6-small">
-											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(숫자만 최소4자리 부터 8자리까지)" disabled="disabled" maxlength="8" />
+											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(최소4자리 부터 20자리까지)" disabled="disabled" maxlength="20" />
 											<p id="pwdWarning" class="warning" style="display:none;"></p> 
 										</div> 
 										<div class="col-6 col-6-small" style="text-align:left;">
@@ -215,6 +221,7 @@
 												<option value="5100000000">강원특별자치도</option>
 												<option value="5200000000">전북특별자치도</option>
 											</select>
+											<p id="sidoWarning" class="warning" style="display:none;"></p> 
 										</div>
 										
 										<div class="col-4 col-12-small">
@@ -422,6 +429,7 @@ function addSubmit(){
 	
 	$("#joinNameWarning").hide();
 	$("#pwdWarning").hide();
+	$("form .warning").css("color", 'red');
 	//console.log( $("#anyone").prop("checked") );
 	
 	if($("#joinName").val() === ''){
@@ -431,12 +439,8 @@ function addSubmit(){
 		$("#pwdWarning").text('비밀번호를 입력하세요!');
 		$("#pwdWarning").show();
 		$("#pwd").focus();
-	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 8)){
-		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 8자리 입니다!');
-		$("#pwdWarning").show();
-		$("#pwd").focus();
-	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 8)){
-		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 8자리 입니다!');
+	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 20)){
+		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 20자리 입니다!');
 		$("#pwdWarning").show();
 		$("#pwd").focus();
 	}else{
