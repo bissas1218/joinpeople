@@ -37,7 +37,7 @@ public class JoinInsert extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("join name: "+request.getParameter("area_list"));
+		System.out.println("join name: "+request.getParameter("gender"));
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
@@ -49,11 +49,21 @@ public class JoinInsert extends HttpServlet {
 		}
 		
 		try {
-			String sql = "insert into join_main (join_name, anyone_chk, pwd) values (?,?,?)";
+			String sql = "insert into join_main (join_name, anyone_chk, pwd, join_area, join_date, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, join_exp) "
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("joinName"));
 			pstmt.setString(2, anyone_chk);
 			pstmt.setString(3, request.getParameter("pwd"));
+			pstmt.setString(4, request.getParameter("area_list"));
+			pstmt.setString(5, request.getParameter("join_date"));
+			pstmt.setString(6, request.getParameter("gender"));
+			pstmt.setString(7, request.getParameter("hole_num"));
+			pstmt.setString(8, request.getParameter("teeup_time"));
+			pstmt.setString(9, request.getParameter("start_greenfee").replace(",", ""));
+			pstmt.setString(10, request.getParameter("end_greenfee").replace(",", ""));
+			pstmt.setString(11, request.getParameter("people_num"));
+			pstmt.setString(12, request.getParameter("join_exp"));
 			pstmt.execute();
 			
 		}catch(SQLException e) {

@@ -46,6 +46,11 @@
 			$("#pwdWarning").show();
 		});
 		
+		$('#join_exp').on('input', function() {
+            var textLength = $(this).val().length;
+            $('#charCount').text(textLength + ' 글자');
+        });
+		
 	});
 	
 	function sidoChange() {
@@ -326,51 +331,53 @@
 										
 										<!-- 성별 -->
 										<div class="col-2 col-4-small">
-											<input type="radio" id="gender-not" name="gender" checked>
+											<input type="radio" id="gender-not" name="gender" value="not" checked>
 											<label for="gender-not">성별무관</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="radio" id="gender-male" name="gender">
+											<input type="radio" id="gender-male" name="gender" value="male">
 											<label for="gender-male">남성</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="radio" id="gender-female" name="gender">
+											<input type="radio" id="gender-female" name="gender" value="female">
 											<label for="gender-female">여성</label>
 										</div>
 										
 										<!-- 홀수 -->
 										<div class="col-3 col-6-small">
-											<input type="radio" id="holenum-18" name="holenum" checked>
+											<input type="radio" id="holenum-18" name="hole_num" value="18" checked>
 											<label for="holenum-18">18홀</label>
 										</div>
 										<div class="col-3 col-6-small">
-											<input type="radio" id="holenum-9" name="holenum">
+											<input type="radio" id="holenum-9" name="hole_num" value="9">
 											<label for="holenum-9">9홀</label>
 										</div>
 										
 										<!-- 시간대 -->
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup-time-1" name="teeup-time" checked>
-											<label for="teeup-time-1">1부</label>
+											<input type="radio" id="teeup_time-1" name="teeup_time" value="1" checked>
+											<label for="teeup_time-1">1부</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup-time-2" name="teeup-time">
-											<label for="teeup-time-2">2부</label>
+											<input type="radio" id="teeup_time-2" name="teeup_time" value="2">
+											<label for="teeup_time-2">2부</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup-time-3" name="teeup-time">
-											<label for="teeup-time-3">3부</label>
+											<input type="radio" id="teeup_time-3" name="teeup_time" value="3">
+											<label for="teeup_time-3">3부</label>
 										</div>
 										
 										<!-- 희망그린피 -->
 										<div class="col-4 col-4-small">
-											<input type="text" name="start-greenfee" id="start-greenfee" placeholder="희망시작그린피" maxlength="11" />
+											<input type="text" name="start_greenfee" id="start_greenfee" placeholder="희망시작그린피" maxlength="11" />
+											<p id="startGreenFee" class="warning" style="display:none;" />
 										</div>
 										<div class="col-2 col-2-small">
 										원 부터
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="text" name="end-greenfee" id="end-greenfee" placeholder="희망종료그린피" maxlength="11" />
+											<input type="text" name="end_greenfee" id="end_greenfee" placeholder="희망종료그린피" maxlength="11" />
+											<p id="endGreenFee" class="warning" style="display:none;" />
 										</div>
 										<div class="col-2 col-2-small">
 										원 까지
@@ -378,20 +385,21 @@
 										
 										<!-- 조인인원 -->
 										<div class="col-4 col-4-small">
-											<input type="radio" id="people-num-4" name="people-num" checked>
-											<label for="people-num-4">4명</label>
+											<input type="radio" id="people_num-4" name="people_num" value="4" checked>
+											<label for="people_num-4">4명</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="people-num-3" name="people-num">
-											<label for="people-num-3">3명</label>
+											<input type="radio" id="people_num-3" name="people_num" value="3">
+											<label for="people_num-3">3명</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="people-num-2" name="people-num">
-											<label for="people-num-2">2명</label>
+											<input type="radio" id="people_num-2" name="people_num" value="2">
+											<label for="people_num-2">2명</label>
 										</div>
 										
 										<div class="col-12 col-12-small">
-										<textarea rows="" cols="" placeholder="조인 설명글"></textarea>
+										<textarea rows="" cols="" placeholder="조인 설명글" name="join_exp" id="join_exp"></textarea>
+										<p id="charCount" class="warning">0 글자</p>
 										</div>
 										
 									</div>
@@ -407,6 +415,7 @@
 							</footer>
 							
 							<input type="hidden" name="area_list" id="area_list" value="" />
+							<input type="hidden" name="join_date" id="join_date" value="" />
 							</form>
 							
 						</section>
@@ -493,7 +502,23 @@ function joinInsertChk(){
 			$("#joinDateWarning").show();
 			$("#joinYear").focus();
 			return false;
+		}else{
+			$("#join_date").val( $("#joinYear").val() + '-' + $("#joinMonth").val()+'-'+ $("#joinDay").val() );
 		}
+	}
+	
+	if($("#start_greenfee").val() === ''){
+		$("#startGreenFee").text('시작 그린피를 입력하세요!'); 
+		$("#startGreenFee").show();
+		$("#start_greenfee").focus();
+		return false;
+	}
+	
+	if($("#end_greenfee").val() === ''){
+		$("#endGreenFee").text('종료 그린피를 입력하세요!'); 
+		$("#endGreenFee").show();
+		$("#end_greenfee").focus();
+		return false;
 	}
 	
 	return true;
@@ -505,6 +530,8 @@ function addSubmit(){
 	$("#joinNameWarning").hide();
 	$("#pwdWarning").hide();
 	$("#joinDateWarning").hide();
+	$("#startGreenFee").hide();
+	$("#endGreenFee").hide();
 	
 	$("form .warning").css("color", 'red');
 	//console.log( $("#anyone").prop("checked") );
@@ -515,7 +542,7 @@ function addSubmit(){
 }
 
 
-const input = document.querySelector('#start-greenfee');
+const input = document.querySelector('#start_greenfee');
 input.addEventListener('keyup', function(e) {
   let value = e.target.value;
   value = Number(value.replaceAll(',', ''));
@@ -527,7 +554,7 @@ input.addEventListener('keyup', function(e) {
   }
 })
 
-const input2 = document.querySelector('#end-greenfee');
+const input2 = document.querySelector('#end_greenfee');
 input2.addEventListener('keyup', function(e) {
   let value = e.target.value;
   value = Number(value.replaceAll(',', ''));
