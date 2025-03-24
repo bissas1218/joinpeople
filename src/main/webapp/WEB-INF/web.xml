@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>JoinInsert</display-name>
+    <servlet-name>JoinInsert</servlet-name>
+    <servlet-class>JoinInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JoinInsert</servlet-name>
+    <url-pattern>/JoinInsert</url-pattern>
+  </servlet-mapping>
 </web-app>

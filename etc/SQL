@@ -3,3 +3,11 @@ CREATE TABLE `do_si_gun` (
   `name` varchar(50) DEFAULT NULL,
   `use_yn` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+CREATE TABLE `join_main` (
+  `index` int(11) NOT NULL AUTO_INCREMENT,
+  `join_name` varchar(50) DEFAULT NULL,
+  `anyone_chk` varchar(1) DEFAULT NULL,
+  `pwd` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`index`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

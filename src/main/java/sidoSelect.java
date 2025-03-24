@@ -36,7 +36,7 @@ public class sidoSelect extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("===sidoSelect==="+request.getParameter("sidoCode"));
+		//System.out.println("===sidoSelect==="+request.getParameter("sidoCode"));
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();

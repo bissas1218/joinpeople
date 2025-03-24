@@ -91,13 +91,13 @@
 			
 			let html = '';
 			if($("#guCode").val() === ''){ // 시도입력
-				console.log('li len:'+ $("#sidoAddUl li").length);
+			//	console.log('li len:'+ $("#sidoAddUl li").length);
 				let chk = true;
 				// 시도 중복체크
 				if($("#sidoAddUl li").length > 0){
 				
 					$('#sidoAddUl li').each(function(index) {
-		                console.log($(this).attr('id')+', Index: ' + index + ', Text: ' + $(this).text());
+		            //    console.log($(this).attr('id')+', Index: ' + index + ', Text: ' + $(this).text());
 		                if( $("#sidoSelect").val() === $(this).attr('id') ){
 		                	//alert('이미 입력된 시도입니다.');
 		                	$("#sidoWarning").text('이미 입력된 시도입니다!');
@@ -184,7 +184,7 @@
 					<!-- Intro -->
 						<section id="intro" class="container">
 						
-							<form method="post" action="joinInsert" name="joinInsertFrm" id="joinInsertFrm" >
+							<form method="post" name="joinInsertFrm" id="joinInsertFrm" onsubmit="return joinInsertChk();" action="JoinInsert">
 							
 							<div class="col-4 col-12-medium">
 							
@@ -192,23 +192,24 @@
 								
 									<div class="row">
 									
-									    <!-- 찾기 -->
+									    <!-- 방제목 -->
 										<div class="col-12 col-12-small">
 											<input type="text" name="joinName" id="joinName" placeholder="방제목" maxlength="50" />
 											<p id="joinNameWarning" class="warning" style="display:none;">방제목을 입력하세요!</p> 
 										</div>
 										
-										<div class="col-6 col-6-small">
+										<!-- 비밀번호 -->
+										<div class="col-8 col-8-small">
 											<input type="password" name="pwd" id="pwd" placeholder="비밀번호(최소4자리 부터 20자리까지)" disabled="disabled" maxlength="20" />
 											<p id="pwdWarning" class="warning" style="display:none;"></p> 
 										</div> 
-										<div class="col-6 col-6-small" style="text-align:left;">
+										<div class="col-4 col-4-small" style="text-align:left;">
 											<input type="checkbox" id="anyone" name="anyone" checked="checked" >
 											<label for="anyone">누구나</label>
 										</div>
 										
 										<!-- 지역 -->
-										<div class="col-4 col-12-small">
+										<div class="col-4 col-4-small">
 											<select onchange="sidoChange();" id="sidoSelect" name="sidoSelect">
 												<option value="">시도선택</option>
 												<option value="1100000000">서울특별시</option>
@@ -232,42 +233,41 @@
 											<p id="sidoWarning" class="warning" style="display:none;"></p> 
 										</div>
 										
-										<div class="col-4 col-12-small">
+										<div class="col-4 col-4-small">
 											<select name="guCode" id="guCode">
 												<option value="">전체시군선택</option>
 											</select>
 											<p id="guWarning" class="warning" style="display:none;"></p>
 										</div>
 										
-										<div class="col-3 col-12-small" id="areaAddBtn">
+										<div class="col-4 col-4-small" id="areaAddBtn">
 											<ul class="actions">
-												<li><input type="button" value="지역추가하기" onclick="areaAdd();" /></li>
+												<li><input type="button" value="지역추가" onclick="areaAdd();" /></li>
 											</ul>
 										</div>
 										
-										<div class="col-3 col-12-small">
+										<!-- 지역추가영역 -->
+										<div class="col-6 col-6-small">
 											<ul id="sidoAddUl">
 											</ul>
 										</div>
 										
-										<div class="col-3 col-12-small">
+										<div class="col-6 col-6-small">
 											<ul id="gugunAddUl">
 											</ul>
 										</div>
 										
-										<div class="col-6 col-12-small">
-										</div>
 										
-										<!-- 일자선택 -->
-										<div class="col-2 col-4-small">
-											<select>
-												<option>조인년도</option>
-												<option>2025년</option>
+										<!-- 조인일자선택 -->
+										<div class="col-4 col-4-small">
+											<select name="joinYear" id="joinYear">
+												<option value="">조인년도</option>
+												<option value="2025">2025년</option>
 											</select>
 										</div>
-										<div class="col-2 col-4-small">
-											<select>
-												<option>조인월</option>
+										<div class="col-4 col-4-small">
+											<select name="joinMonth" id="joinMonth">
+												<option value="">조인월</option>
 												<option value="1">1월</option>
 												<option value="2">2월</option>
 												<option value="3">3월</option>
@@ -282,9 +282,9 @@
 												<option value="12">12월</option>
 											</select>
 										</div>
-										<div class="col-2 col-4-small">
-											<select>
-												<option>조인일</option>
+										<div class="col-4 col-4-small">
+											<select name="joinDay" id="joinDay">
+												<option value="">조인일</option>
 												<option value="1">1일</option>
 												<option value="2">2일</option>
 												<option value="3">3일</option>
@@ -319,7 +319,12 @@
 											</select>
 										</div>
 										
-										<!-- Break -->
+										<!-- 조인일자에러출력 -->
+										<div class="col-12 col-12-small">
+											<p id="joinDateWarning" class="warning" style="display:none;"></p>
+										</div>
+										
+										<!-- 성별 -->
 										<div class="col-2 col-4-small">
 											<input type="radio" id="gender-not" name="gender" checked>
 											<label for="gender-not">성별무관</label>
@@ -333,7 +338,7 @@
 											<label for="gender-female">여성</label>
 										</div>
 										
-										<!-- Break -->
+										<!-- 홀수 -->
 										<div class="col-3 col-6-small">
 											<input type="radio" id="holenum-18" name="holenum" checked>
 											<label for="holenum-18">18홀</label>
@@ -343,43 +348,44 @@
 											<label for="holenum-9">9홀</label>
 										</div>
 										
-										<!-- Break -->
-										<div class="col-2 col-4-small">
+										<!-- 시간대 -->
+										<div class="col-4 col-4-small">
 											<input type="radio" id="teeup-time-1" name="teeup-time" checked>
 											<label for="teeup-time-1">1부</label>
 										</div>
-										<div class="col-2 col-4-small">
+										<div class="col-4 col-4-small">
 											<input type="radio" id="teeup-time-2" name="teeup-time">
 											<label for="teeup-time-2">2부</label>
 										</div>
-										<div class="col-2 col-4-small">
+										<div class="col-4 col-4-small">
 											<input type="radio" id="teeup-time-3" name="teeup-time">
 											<label for="teeup-time-3">3부</label>
 										</div>
 										
-										<div class="col-3 col-6-small">
+										<!-- 희망그린피 -->
+										<div class="col-4 col-4-small">
 											<input type="text" name="start-greenfee" id="start-greenfee" placeholder="희망시작그린피" maxlength="11" />
 										</div>
-										<div class="col-3 col-6-small">
+										<div class="col-2 col-2-small">
 										원 부터
 										</div>
-										<div class="col-3 col-6-small">
+										<div class="col-4 col-4-small">
 											<input type="text" name="end-greenfee" id="end-greenfee" placeholder="희망종료그린피" maxlength="11" />
 										</div>
-										<div class="col-3 col-6-small">
+										<div class="col-2 col-2-small">
 										원 까지
 										</div>
 										
-										<!-- Break -->
-										<div class="col-2 col-4-small">
+										<!-- 조인인원 -->
+										<div class="col-4 col-4-small">
 											<input type="radio" id="people-num-4" name="people-num" checked>
 											<label for="people-num-4">4명</label>
 										</div>
-										<div class="col-2 col-4-small">
+										<div class="col-4 col-4-small">
 											<input type="radio" id="people-num-3" name="people-num">
 											<label for="people-num-3">3명</label>
 										</div>
-										<div class="col-2 col-4-small">
+										<div class="col-4 col-4-small">
 											<input type="radio" id="people-num-2" name="people-num">
 											<label for="people-num-2">2명</label>
 										</div>
@@ -400,6 +406,7 @@
 								</ul>
 							</footer>
 							
+							<input type="hidden" name="area_list" id="area_list" value="" />
 							</form>
 							
 						</section>
@@ -431,31 +438,79 @@
 <script type="text/javascript">
 
 
-
+function joinInsertChk(){
+	console.log('--------joinInsertChk-------------');
+	
+	if($("#joinName").val() === ''){
+		$("#joinNameWarning").show();
+		$("#joinName").focus();
+		return false;
+	}
+	
+	if(!$("#anyone").prop("checked") && $("#pwd").val() === ''){
+		$("#pwdWarning").text('비밀번호를 입력하세요!');
+		$("#pwdWarning").show();
+		$("#pwd").focus();
+		return false;
+	}
+	
+	if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 20)){
+		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 20자리 입니다!');
+		$("#pwdWarning").show();
+		$("#pwd").focus();
+		return false;
+	}
+	
+	if($("#sidoAddUl li").length === 0 && $("#gugunAddUl li").length === 0){
+		$("#sidoWarning").text('최소 1개의 선호지역을 추가하셔야 합니다!');
+		$("#sidoWarning").show();
+		$("#sidoSelect").focus();
+		return false;
+	}else{
+		let area_list = '';
+		
+		$('#sidoAddUl li').each(function() {
+		    var liId = $(this).attr('id');
+		    area_list += liId + ',';
+		  });
+		
+		$('#gugunAddUl li').each(function() {
+		    var liId = $(this).attr('id');
+		    area_list += liId + ',';
+		  });
+		
+		$("#area_list").val(area_list);
+	}
+	
+	if($("#joinYear").val() === '' || $("#joinMonth").val() === '' || $("#joinDay").val() === ''){
+		$("#joinDateWarning").text('조인할 날짜를 선택해주세요!');
+		$("#joinDateWarning").show();
+		$("#joinYear").focus();
+		return false;
+	}else{
+		if(new Date() > new Date($("#joinYear").val() + '-' + $("#joinMonth").val()+'-'+ $("#joinDay").val())){
+			$("#joinDateWarning").text('조인할 날짜는 오늘 이후여야 합니다!');
+			$("#joinDateWarning").show();
+			$("#joinYear").focus();
+			return false;
+		}
+	}
+	
+	return true;
+}
 
 
 function addSubmit(){
 	
 	$("#joinNameWarning").hide();
 	$("#pwdWarning").hide();
+	$("#joinDateWarning").hide();
+	
 	$("form .warning").css("color", 'red');
 	//console.log( $("#anyone").prop("checked") );
+	//console.log($("#sidoAddUl li").length);
 	
-	if($("#joinName").val() === ''){
-		$("#joinNameWarning").show();
-		$("#joinName").focus();
-	}else if(!$("#anyone").prop("checked") && $("#pwd").val() === ''){
-		$("#pwdWarning").text('비밀번호를 입력하세요!');
-		$("#pwdWarning").show();
-		$("#pwd").focus();
-	}else if(!$("#anyone").prop("checked") && $("#pwd").val() != '' && ($("#pwd").val().length < 4 || $("#pwd").val().length > 20)){
-		$("#pwdWarning").text('비밀번호는 최소 4부터 최대 20자리 입니다!');
-		$("#pwdWarning").show();
-		$("#pwd").focus();
-	}else{
-		alert('저장완료');
-		//$("#joinInsertFrm").submit();	
-	}
+	$("#joinInsertFrm").submit();
 	
 }
 
