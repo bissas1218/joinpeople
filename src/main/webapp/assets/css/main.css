@@ -2331,6 +2331,10 @@ input[type="radio"] + label:before {
 		}
 
 		#intro h2 {
+			margin:0;
+			padding:0;
+			text-align:left;
+		    color:blue;
 			font-size: 1.75em;
 		}
 
@@ -2531,6 +2535,7 @@ input[type="radio"] + label:before {
 					right: -12px;
 				}
 
+				
 		/* Main */
 
 			#main {
@@ -2980,7 +2985,8 @@ input[type="radio"] + label:before {
 				}
 
 				#intro h2 {
-					font-size: 1.25em;
+					color:red;
+					font-size: 10.25em;
 				}
 
 		/* Banner */

@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -85,8 +86,10 @@ public class JoinInsert extends HttpServlet {
 		}
 		
 		response.setContentType("text/html; charset=utf-8");
-		//PrintWriter out = response.getWriter();
-		response.sendRedirect("/join-list.jsp");
+		PrintWriter out = response.getWriter();
+		out.print("<html><script>alert('새로운 조인방이 생성되었습니다.');window.location.href='/join-list.jsp';</script></html>");
+		out.close();
+		//response.sendRedirect("/join-list.jsp");
 	}
 
 }

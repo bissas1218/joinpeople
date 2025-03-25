@@ -186,9 +186,12 @@
 							</ul>
 						</nav>
 
+
 					<!-- Intro -->
 						<section id="intro" class="container">
 						
+							<h2>방만들기</h2>
+							
 							<form method="post" name="joinInsertFrm" id="joinInsertFrm" onsubmit="return joinInsertChk();" action="JoinInsert">
 							
 							<div class="col-4 col-12-medium">
