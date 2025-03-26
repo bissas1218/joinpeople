@@ -23,12 +23,12 @@
 				<section id="header">
 
 					<!-- Logo -->
-						<h1><a href="/join-list.jsp">JOIN PEOPLE</a></h1>
+						<h1><a href="/JoinList">JOIN PEOPLE</a></h1>
 
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li class="current"><a href="/join-list.jsp">Home</a></li>
+								<li class="current"><a href="/JoinList">Home</a></li>
 								<li><a href="left-sidebar.html">로그인</a></li>
 								<li><a href="right-sidebar.html">정보수정</a></li>
 								<li><a href="no-sidebar.html">공지사항</a></li>
@@ -40,14 +40,17 @@
 
 					<!-- Intro -->
 						<section id="intro" class="container">
+						
+							<h2>조인방 목록</h2>
+						
 							<div class="col-4 col-12-medium">
 							<section class="first">
 								<form method="post" action="#">
 									<div class="row">
-									    <!-- 찾기 -->
+									    <!-- 찾기 
 										<div class="col-12 col-12-small">
 											<input type="text" name="name" id="name" placeholder="방제목" />
-										</div>
+										</div>-->
 										<!-- 
 										<div class="col-3 col-12-small">
 											<ul class="actions">
@@ -56,7 +59,7 @@
 										</div>
 										 -->
 										 
-										<!-- 지역 -->
+										<!-- 지역 
 										<div class="col-6 col-12-small">
 											<select>
 												<option>지역선택</option>
@@ -78,9 +81,9 @@
 												<option value="5100000000">강원특별자치도</option>
 												<option value="5200000000">전북특별자치도</option>
 											</select>
-										</div>
+										</div>-->
 										
-										<!-- 일자선택 -->
+										<!-- 일자선택
 										<div class="col-2 col-4-small">
 											<input type="text" name="name" id="name" placeholder="조인년도" maxlength="4" />
 										</div>
@@ -89,9 +92,9 @@
 										</div>
 										<div class="col-2 col-4-small">
 											<input type="text" name="name" id="name" placeholder="조인일" />
-										</div>
+										</div> -->
 										
-										<!-- Break -->
+										<!-- Break
 										<div class="col-2 col-4-small">
 											<input type="checkbox" id="demo-copy" name="demo-copy">
 											<label for="demo-copy">충주시</label>
@@ -131,8 +134,8 @@
 										<div class="col-2 col-12-small"></div>
 										<div class="col-2 col-12-small"></div>
 										<div class="col-2 col-12-small"></div>
-										
-										<!-- Break -->
+										 -->
+										<!-- Break
 										<div class="col-2 col-4-small">
 											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
 											<label for="demo-priority-low">성별무관</label>
@@ -145,8 +148,8 @@
 											<input type="radio" id="demo-priority-high" name="demo-priority">
 											<label for="demo-priority-high">여성</label>
 										</div>
-										
-										<!-- Break -->
+										 -->
+										<!-- Break
 										<div class="col-3 col-6-small">
 											<input type="radio" id="demo-priority-low2" name="demo-priority2" checked>
 											<label for="demo-priority-low2">18홀</label>
@@ -155,7 +158,7 @@
 											<input type="radio" id="demo-priority-normal2" name="demo-priority2">
 											<label for="demo-priority-normal2">9홀</label>
 										</div>
-										
+										 -->
 										
 										<!--
 										<div class="col-12">
@@ -179,7 +182,7 @@
 							<footer>
 								<ul class="actions">
 									<li><a href="#" class="button large">조회하기</a></li>
-									<li><a href="/join-insert.jsp" class="button alt large">방만들기</a></li>
+									<li><a href="/JoinInsert" class="button alt large">방만들기</a></li>
 								</ul>
 							</footer>
 							
@@ -194,24 +197,42 @@
 						<div class="row">
 							<div class="col-12 col-12-medium">
 								<section>
-									<header>
-										<h2>2025년 3월</h2>
-									</header>
+								
+								<c:set var="cntChk" value="0" />
+								<c:forEach items="${joinList}" var="joinList">
+								
+									<c:set var="joinDate" value="${fn:split(joinList.joinDate,'-')}" />
 									
-									<ul class="dates">
-									<c:forEach var="test" begin="0" end="5">
-										<li>
-											<span class="date">3 <strong>27</strong></span>
-											<h3><a href="#">[비밀방] 충남 예산시, 세종시, 대전시, 충북 보은시, 경북 상주시, 경북 문경시, 충북 청주시</a></h3>
-											<p>
-												시간 05시~13시, 그린피 30,000~120,000원, 타수무관, 성별무관, 현재3명, 18홀
-												<input type="password" name="pwd" id="pwd" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
-												<a href="#" class="button">참여하기</a>
-											</p>
-										</li>
-									</c:forEach>
+									<c:if test="${cntChk ne joinDate[1]}">
 									
-									</ul>
+										<c:if test="${cntChk ne '0'}">
+										</ul>
+										</c:if>
+										
+										<header>
+											<h2>${joinDate[0]}년 ${joinDate[1]}월</h2>
+										</header>
+										<ul class="dates">
+										<c:set var="cntChk" value="${joinDate[1]}" />
+									</c:if>
+									
+											<li>
+												<span class="date">${joinDate[1]} <strong>${joinDate[2]}</strong></span>
+												<h3><a href="#">
+													<c:if test="${joinList.anyoneChk eq 'N'}">[비밀방]</c:if> ${joinList.joinName}</a></h3>
+												<h5>충청북도 증평군, 충청북도 진천군, 충청북도 괴산군, 충청북도 음성군, 충청북도 단양군, 충청북도 증평군, 충청북도 진천군, 충청북도 괴산군, 충청북도 음성군, 충청북도 단양군</h5>
+												<p>
+													시간 05시~13시, 그린피 30,000~120,000원, 타수무관, 성별무관, 현재3명, 18홀
+													<c:if test="${joinList.anyoneChk eq 'N'}">
+														<input type="password" name="pwd" id="pwd" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
+													</c:if>
+													<a href="#" class="button">참여하기</a>
+												</p>
+											</li>
+									
+									
+								</c:forEach>
+								
 								</section>
 							</div>
 							<!-- 

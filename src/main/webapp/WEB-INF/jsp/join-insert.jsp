@@ -170,12 +170,12 @@
 				<section id="header">
 
 					<!-- Logo -->
-						<h1><a href="/join-list.jsp">JOIN PEOPLE</a></h1>
+						<h1><a href="/JoinList">JOIN PEOPLE</a></h1>
 
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li class="current"><a href="/join-list.jsp">Home</a></li>
+								<li class="current"><a href="/JoinList">Home</a></li>
 								<li><a href="left-sidebar.html">로그인</a></li>
 								<li><a href="right-sidebar.html">정보수정</a></li>
 								<li><a href="no-sidebar.html">공지사항</a></li>
@@ -190,7 +190,7 @@
 					<!-- Intro -->
 						<section id="intro" class="container">
 						
-							<h2>방만들기</h2>
+							<h2>조인방만들기</h2>
 							
 							<form method="post" name="joinInsertFrm" id="joinInsertFrm" onsubmit="return joinInsertChk();" action="JoinInsert">
 							
@@ -401,8 +401,8 @@
 										</div>
 										
 										<div class="col-12 col-12-small">
-										<textarea rows="" cols="" placeholder="조인 설명글" name="join_exp" id="join_exp"></textarea>
-										<p id="charCount" class="warning">0 글자</p>
+										<textarea rows="" cols="" placeholder="조인 설명글" name="join_exp" id="join_exp" maxlength="500"></textarea>
+										<p id="charCount" class="warning">0 글자 (최대 500글자)</p>
 										</div>
 										
 									</div>
@@ -413,7 +413,7 @@
 							<footer>
 								<ul class="actions">
 									<li><a href="javascript:addSubmit();" class="button large">추가하기</a></li>
-									<li><a href="/join-list.jsp" class="button alt large">취소하기</a></li>
+									<li><a href="/JoinList" class="button alt large">취소하기</a></li>
 								</ul>
 							</footer>
 							

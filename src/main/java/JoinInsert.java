@@ -1,5 +1,6 @@
 
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,15 +31,16 @@ public class JoinInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html; charset=utf-8");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/join-insert.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("join name: "+request.getParameter("gender"));
+		//System.out.println("join name: "+request.getParameter("gender"));
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
@@ -87,7 +89,7 @@ public class JoinInsert extends HttpServlet {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print("<html><script>alert('새로운 조인방이 생성되었습니다.');window.location.href='/join-list.jsp';</script></html>");
+		out.print("<html><script>alert('새로운 조인방이 생성되었습니다.');window.location.href='/JoinList';</script></html>");
 		out.close();
 		//response.sendRedirect("/join-list.jsp");
 	}

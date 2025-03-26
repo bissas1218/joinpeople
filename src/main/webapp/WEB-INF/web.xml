@@ -29,4 +29,14 @@
     <servlet-name>JoinInsert</servlet-name>
     <url-pattern>/JoinInsert</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JoinList</display-name>
+    <servlet-name>JoinList</servlet-name>
+    <servlet-class>JoinList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JoinList</servlet-name>
+    <url-pattern>/JoinList</url-pattern>
+  </servlet-mapping>
 </web-app>

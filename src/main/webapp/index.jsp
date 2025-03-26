@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url='/join-list.jsp'" />
+<meta http-equiv="refresh" content="0; url='/JoinList'" />
 <title>Insert title here</title>
 </head>
 <body>
