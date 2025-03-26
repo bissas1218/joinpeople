@@ -18,5 +18,5 @@ CREATE TABLE `join_main` (
   `end_greenfee` varchar(9) DEFAULT NULL,
   `people_num` varchar(1) DEFAULT NULL,
   `join_exp` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`index`)
+  PRIMARY KEY (`seq`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
