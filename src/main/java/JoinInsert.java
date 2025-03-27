@@ -52,8 +52,8 @@ public class JoinInsert extends HttpServlet {
 		}
 		
 		try {
-			String sql = "insert into join_main (join_name, anyone_chk, pwd, join_area, join_date, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, join_exp) "
-					+ "values (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into join_main (join_name, anyone_chk, pwd, join_area, join_date, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, join_exp, stroke_num) "
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("joinName"));
 			pstmt.setString(2, anyone_chk);
@@ -67,6 +67,7 @@ public class JoinInsert extends HttpServlet {
 			pstmt.setString(10, request.getParameter("end_greenfee").replace(",", ""));
 			pstmt.setString(11, request.getParameter("people_num"));
 			pstmt.setString(12, request.getParameter("join_exp"));
+			pstmt.setString(13, request.getParameter("stroke_num"));
 			pstmt.execute();
 			
 		}catch(SQLException e) {

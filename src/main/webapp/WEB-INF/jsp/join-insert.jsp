@@ -126,7 +126,7 @@
 				if($("#gugunAddUl li").length > 0){
 					
 					$('#gugunAddUl li').each(function(index) {
-						if( $("#sidoSelect").val() + '-' + $("#guCode").val() === $(this).attr('id') ){
+						if( $("#guCode").val() === $(this).attr('id') ){
 							//alert('이미 입력된 구군입니다.');
 							$("#guWarning").text('이미 입력된 구군입니다!');
 		        			$("#guWarning").show();
@@ -136,7 +136,7 @@
 				}
 				
 				if(chk){
-					html = "<li id='"+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
+					html = "<li id='"+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
 					//" <a href='javascript:deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");'>X</a></li>";
 					"<input type='button' value='삭제' onclick='deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");' id='small-btn' /></li>";
 					$("#gugunAddUl").append(html);
@@ -398,6 +398,24 @@
 										<div class="col-4 col-4-small">
 											<input type="radio" id="people_num-2" name="people_num" value="2">
 											<label for="people_num-2">2명</label>
+										</div>
+										
+										<!-- 타수 -->
+										<div class="col-3 col-3-small">
+											<input type="radio" id="stroke_num-not" name="stroke_num" value="not" checked>
+											<label for="stroke_num-not">타수무관</label>
+										</div>
+										<div class="col-3 col-3-small">
+											<input type="radio" id="stroke_num-70" name="stroke_num" value="70">
+											<label for="stroke_num-70">80타미만</label>
+										</div>
+										<div class="col-3 col-3-small">
+											<input type="radio" id="stroke_num-890" name="stroke_num" value="890">
+											<label for="stroke_num-890">80,90타대</label>
+										</div>
+										<div class="col-3 col-3-small">
+											<input type="radio" id="stroke_num-100" name="stroke_num" value="100">
+											<label for="stroke_num-100">백돌이만</label>
 										</div>
 										
 										<div class="col-12 col-12-small">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE HTML>
 <!--
@@ -220,9 +221,38 @@
 												<span class="date">${joinDate[1]} <strong>${joinDate[2]}</strong></span>
 												<h3><a href="#">
 													<c:if test="${joinList.anyoneChk eq 'N'}">[비밀방]</c:if> ${joinList.joinName}</a></h3>
-												<h5>충청북도 증평군, 충청북도 진천군, 충청북도 괴산군, 충청북도 음성군, 충청북도 단양군, 충청북도 증평군, 충청북도 진천군, 충청북도 괴산군, 충청북도 음성군, 충청북도 단양군</h5>
+												<h5><c:out value="${joinList.areaListStr}" /></h5>
 												<p>
-													시간 05시~13시, 그린피 30,000~120,000원, 타수무관, 성별무관, 현재3명, 18홀
+													${joinList.teeupTime}부, 
+													<c:choose>
+														<c:when test="${joinList.gender eq 'not'}">
+														성별무관,
+														</c:when>
+														<c:when test="${joinList.gender eq 'male'}">
+														남성만,
+														</c:when>
+														<c:when test="${joinList.gender eq 'female'}">
+														여성만,
+														</c:when>
+													</c:choose>
+													${joinList.holeNum}홀,
+													그린피 <fmt:formatNumber value="${joinList.startGreenfee}" pattern="#,###.##" />~
+													<fmt:formatNumber value="${joinList.endGreenfee}" pattern="#,###.##" />원, 
+													<c:choose>
+														<c:when test="${joinList.strokeNum eq 'not'}">
+														타수무관,
+														</c:when>
+														<c:when test="${joinList.strokeNum eq '70'}">
+														80타미만,
+														</c:when>
+														<c:when test="${joinList.strokeNum eq '890'}">
+														80,90타대만,
+														</c:when>
+														<c:when test="${joinList.strokeNum eq '100'}">
+														백돌이만,
+														</c:when>
+													</c:choose>
+													현재<c:out value="${joinList.peopleNum}" />명중 0명완료
 													<c:if test="${joinList.anyoneChk eq 'N'}">
 														<input type="password" name="pwd" id="pwd" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
 													</c:if>
