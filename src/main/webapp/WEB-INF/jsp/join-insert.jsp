@@ -48,7 +48,7 @@
 		
 		$('#join_exp').on('input', function() {
             var textLength = $(this).val().length;
-            $('#charCount').text(textLength + ' 글자');
+            $('#charCount').text(textLength + ' 글자 (최대 500글자)');
         });
 		
 	});
@@ -82,73 +82,89 @@
 	} 
 	
 	function areaAdd(){
+		
 	//	console.log( $("#sidoSelect").val() + ', '+ $("#guCode").val());
 		$("#sidoWarning").hide();
 		$("#guWarning").hide();
 		
 		if($("#sidoSelect").val() === ''){
+			
 			$("#sidoWarning").text('시도를 선택하세요!');
 			$("#sidoWarning").show();
 		//	alert('시도를 선택하세요!');
 			$("#sidoSelect").focus();
-		}else{
-		//	console.log( $("areaTxt").length );
 			
-			let html = '';
-			if($("#guCode").val() === ''){ // 시도입력
-			//	console.log('li len:'+ $("#sidoAddUl li").length);
-				let chk = true;
-				// 시도 중복체크
-				if($("#sidoAddUl li").length > 0){
+		}else{
+			
+			// 지역수 제한
+			if( $("#sidoAddUl li").length + $("#gugunAddUl li").length >= 10 ){
 				
-					$('#sidoAddUl li').each(function(index) {
-		            //    console.log($(this).attr('id')+', Index: ' + index + ', Text: ' + $(this).text());
-		                if( $("#sidoSelect").val() === $(this).attr('id') ){
-		                	//alert('이미 입력된 시도입니다.');
-		                	$("#sidoWarning").text('이미 입력된 시도입니다!');
-		        			$("#sidoWarning").show();
-		                	chk = false;
-		                //	break;
-		                }
-		            });
-				}
+				$("#sidoWarning").text('지역은 최대 10개 까지입니다!');
+    			$("#sidoWarning").show();
+    			
+			}else{	// 지역 입력
 				
-				if(chk){
-					html = "<li id='"+$("#sidoSelect :selected").val()+"'>"+$("#sidoSelect :selected").text()+
-					"<input type='button' value='삭제' onclick='deleteSido("+$("#sidoSelect :selected").val()+");' id='small-btn' /></li>";
-					$("#sidoAddUl").append(html);
-				}
-				
-				
-			}else{	// 시군입력
-				
-				let chk = true;
-				if($("#gugunAddUl li").length > 0){
+				let html = '';
+				if($("#guCode").val() === ''){ // 시도입력
 					
-					$('#gugunAddUl li').each(function(index) {
-						if( $("#guCode").val() === $(this).attr('id') ){
-							//alert('이미 입력된 구군입니다.');
-							$("#guWarning").text('이미 입력된 구군입니다!');
-		        			$("#guWarning").show();
-							chk = false;
-						}
-					});
+					let chk = true;
+					// 시도 중복체크
+					if($("#sidoAddUl li").length > 0){
+					
+						$('#sidoAddUl li').each(function(index) {
+			                if( $("#sidoSelect").val() === $(this).attr('id') ){
+			                	$("#sidoWarning").text('이미 입력된 시도입니다!');
+			        			$("#sidoWarning").show();
+			                	chk = false;
+			                }
+			            });
+					}
+					
+					// 시도추가
+					if(chk){
+						html = "<li id='"+$("#sidoSelect :selected").val()+"'>"+$("#sidoSelect :selected").text()+
+						"<input type='button' value='삭제' onclick='deleteSido("+$("#sidoSelect :selected").val()+");' id='small-btn' /></li>";
+						$("#sidoAddUl").append(html);
+						
+						// 자식 시군삭제
+					//	console.log($("#sidoSelect :selected").val().substr(0,2));
+						$("#gugunAddUl li").each(function(index) {
+							if( $("#sidoSelect :selected").val().substr(0,2) === $(this).attr('id').substr(0,2) ){
+								$("#"+$(this).attr('id')).remove();
+							}
+						});
+					}
+					
+					
+				}else{	// 시군입력
+					
+					let chk = true;
+					if($("#gugunAddUl li").length > 0){
+						
+						$('#gugunAddUl li').each(function(index) {
+							if( $("#guCode").val() === $(this).attr('id') ){
+								$("#guWarning").text('이미 입력된 구군입니다!');
+			        			$("#guWarning").show();
+								chk = false;
+							}
+						});
+					}
+					
+					// 군구추가
+					if(chk){
+						html = "<li id='"+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
+						"<input type='button' value='삭제' onclick='deleteSido(\""+$("#guCode :selected").val()+"\");' id='small-btn' /></li>";
+						$("#gugunAddUl").append(html);
+						
+						// 부모 시도삭제
+						//console.log( $("#guCode :selected").val().substr(0,2) + '00000000' );
+						$("#"+$("#guCode :selected").val().substr(0,2) + '00000000').remove();
+					}
+					
 				}
-				
-				if(chk){
-					html = "<li id='"+$("#guCode :selected").val()+"'>"+$("#sidoSelect :selected").text()+' '+$("#guCode :selected").text()+
-					//" <a href='javascript:deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");'>X</a></li>";
-					"<input type='button' value='삭제' onclick='deleteSido(\""+$("#sidoSelect :selected").val()+'-'+$("#guCode :selected").val()+"\");' id='small-btn' /></li>";
-					$("#gugunAddUl").append(html);
-				}
-				
 			}
 			
-			//$("#areaAddBtn").after(html);
-			
 		}
-		
-		
 		
 	}
 	
@@ -539,6 +555,15 @@ function joinInsertChk(){
 		$("#endGreenFee").text('종료 그린피를 입력하세요!'); 
 		$("#endGreenFee").show();
 		$("#end_greenfee").focus();
+		return false;
+	}
+	
+	console.log( Number($("#start_greenfee").val().replace(',','')) + ', ' + Number($("#end_greenfee").val().replace(',','')) );
+	if( Number($("#start_greenfee").val().replace(',','')) > Number($("#end_greenfee").val().replace(',','')) ){
+		$("#startGreenFee").text('시작그린피 금액이 큽니다!'); 
+		
+		$("#startGreenFee").show();
+		$("#start_greenfee").focus();
 		return false;
 	}
 	
