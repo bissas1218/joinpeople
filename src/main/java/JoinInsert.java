@@ -11,6 +11,10 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Servlet implementation class JoinInsert
@@ -31,6 +35,11 @@ public class JoinInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		LocalDate ldate = LocalDate.now();
+		int[] yearArr = {ldate.getYear(), ldate.plusYears(1).getYear()};
+		request.setAttribute("yearArr", yearArr);
+		
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/join-insert.jsp");
 		rd.forward(request, response);

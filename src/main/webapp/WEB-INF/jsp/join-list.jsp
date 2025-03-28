@@ -95,47 +95,80 @@
 											<input type="text" name="name" id="name" placeholder="조인일" />
 										</div> -->
 										
-										<!-- Break
+										<!-- Break -->
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-copy" name="demo-copy">
-											<label for="demo-copy">충주시</label>
+											<input type="checkbox" id="search-area-all" name="search-area" checked>
+											<label for="search-area-all">전국</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">제천시</label>
+											<input type="checkbox" id="search-area-11" name="search-area" value="11">
+											<label for="search-area-11">서울</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">보은군</label>
+											<input type="checkbox" id="search-area-26" name="search-area" value="26">
+											<label for="search-area-26">부산</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">옥천군</label>
+											<input type="checkbox" id="search-area-27" name="search-area" value="27">
+											<label for="search-area-27">대구</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">영동군</label>
+											<input type="checkbox" id="search-area-28" name="search-area" value="28">
+											<label for="search-area-28">인천</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">진천군</label>
+											<input type="checkbox" id="search-area-29" name="search-area" value="29">
+											<label for="search-area-29">광주</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">괴산군</label>
+											<input type="checkbox" id="search-area-30" name="search-area" value="30">
+											<label for="search-area-30">대전</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">음성군</label>
+											<input type="checkbox" id="search-area-31" name="search-area" value="31">
+											<label for="search-area-31">울산</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="demo-human" name="demo-human" checked>
-											<label for="demo-human">단양군</label>
+											<input type="checkbox" id="search-area-3611" name="search-area" value="3611">
+											<label for="search-area-3611">세종</label>
 										</div>
-										<div class="col-2 col-12-small"></div>
-										<div class="col-2 col-12-small"></div>
-										<div class="col-2 col-12-small"></div>
-										 -->
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-41" name="search-area" value="41">
+											<label for="search-area-41">경기</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-43" name="search-area" value="43">
+											<label for="search-area-43">충북</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-44" name="search-area" value="44">
+											<label for="search-area-44">충남</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-46" name="search-area" value="46">
+											<label for="search-area-46">전남</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-47" name="search-area" value="47">
+											<label for="search-area-47">경북</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-48" name="search-area" value="48">
+											<label for="search-area-48">경남</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-50" name="search-area" value="50">
+											<label for="search-area-50">제주</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-51" name="search-area" value="51">
+											<label for="search-area-51">강원도</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="search-area-52" name="search-area" value="52">
+											<label for="search-area-52">전북도</label>
+										</div>
+										
 										<!-- Break
 										<div class="col-2 col-4-small">
 											<input type="radio" id="demo-priority-low" name="demo-priority" checked>

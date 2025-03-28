@@ -50,11 +50,13 @@ public class JoinList extends HttpServlet {
 			List<JoinMainVO> joinList = new ArrayList<JoinMainVO>();
 			
 			while(rs.next()) {
-			//	System.out.println("=>"+rs.getString(5));
-				String[] areaList = rs.getString(5).split(",");
+				System.out.println("=>"+rs.getString(5).substring(1));
+				String[] areaList = rs.getString(5).substring(1).split(",");
+				System.out.println("==>"+areaList);
+				
 				String areaListStr = "";
 				for(int i=0; i<areaList.length; i++) {
-					//System.out.println(areaList[i]);
+					System.out.println(areaList[i]);
 					sql = "select name from do_si_gun where code = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, areaList[i]);

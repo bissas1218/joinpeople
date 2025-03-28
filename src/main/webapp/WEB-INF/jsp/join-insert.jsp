@@ -286,7 +286,9 @@
 										<div class="col-4 col-4-small">
 											<select name="joinYear" id="joinYear">
 												<option value="">조인년도</option>
-												<option value="2025">2025년</option>
+											<c:forEach items="${yearArr}" var="yearArr">
+												<option value="${yearArr}">${yearArr}년</option>
+											</c:forEach>
 											</select>
 										</div>
 										<div class="col-4 col-4-small">
@@ -517,12 +519,12 @@ function joinInsertChk(){
 		
 		$('#sidoAddUl li').each(function() {
 		    var liId = $(this).attr('id');
-		    area_list += liId + ',';
+		    area_list += ',' + liId;
 		  });
 		
 		$('#gugunAddUl li').each(function() {
 		    var liId = $(this).attr('id');
-		    area_list += liId + ',';
+		    area_list += ',' + liId;
 		  });
 		
 		$("#area_list").val(area_list);
@@ -534,8 +536,21 @@ function joinInsertChk(){
 		$("#joinYear").focus();
 		return false;
 	}else{
-		if(new Date() > new Date($("#joinYear").val() + '-' + $("#joinMonth").val()+'-'+ $("#joinDay").val())){
+		
+		let date = new Date();
+		//console.log(date);
+		
+		let date2 = new Date();
+		date2.setDate(date2.getDate() + 365);
+		//console.log(date2);
+		
+		if(date > new Date($("#joinYear").val() + '-' + $("#joinMonth").val()+'-'+ $("#joinDay").val())){
 			$("#joinDateWarning").text('조인할 날짜는 오늘 이후여야 합니다!');
+			$("#joinDateWarning").show();
+			$("#joinYear").focus();
+			return false;
+		}else if(date2 < new Date($("#joinYear").val() + '-' + $("#joinMonth").val()+'-'+ $("#joinDay").val())){
+			$("#joinDateWarning").text('조인할 날짜는 1년 이내여야 합니다!');
 			$("#joinDateWarning").show();
 			$("#joinYear").focus();
 			return false;
@@ -558,7 +573,7 @@ function joinInsertChk(){
 		return false;
 	}
 	
-	console.log( Number($("#start_greenfee").val().replace(',','')) + ', ' + Number($("#end_greenfee").val().replace(',','')) );
+	//console.log( Number($("#start_greenfee").val().replace(',','')) + ', ' + Number($("#end_greenfee").val().replace(',','')) );
 	if( Number($("#start_greenfee").val().replace(',','')) > Number($("#end_greenfee").val().replace(',','')) ){
 		$("#startGreenFee").text('시작그린피 금액이 큽니다!'); 
 		
