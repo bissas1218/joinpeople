@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE HTML>
 <!--
@@ -16,6 +16,37 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
+		<script src="/assets/js/jquery.min.js"></script>
+		
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$('input[name="search-area"]').change(function(){
+		//console.log('search-area-change');
+		var value = $(this).val();
+		var checked = $(this).prop('checked');
+		var $label = $(this).next();
+		
+		//console.log(value + ', ' + checked + ', ' + $label);
+		
+		if(value === 'all' && checked){ // 전국에 체크
+			$('input[name="search-area"]').each(function() {
+				//console.log($(this).val());
+				if($(this).val() != 'all'){
+					$(this).prop('checked', false);
+				}
+			});
+		}else if(value === 'all' && !checked){
+			
+		}else if(value != 'all'){
+			$("#search-area-all").prop('checked', false);
+		}
+	});
+});
+
+</script>
+		
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -97,7 +128,7 @@
 										
 										<!-- Break -->
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-all" name="search-area" checked>
+											<input type="checkbox" id="search-area-all" name="search-area" value="all" checked>
 											<label for="search-area-all">전국</label>
 										</div>
 										<div class="col-2 col-4-small">
@@ -287,7 +318,7 @@
 													</c:choose>
 													현재<c:out value="${joinList.peopleNum}" />명중 0명완료
 													<c:if test="${joinList.anyoneChk eq 'N'}">
-														<input type="password" name="pwd" id="pwd" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
+														<input type="password" name="pwd_${joinList.seq}" id="pwd_${joinList.seq}" placeholder="비밀번호" size="8" maxlength="8" class="small-input" />
 													</c:if>
 													<a href="#" class="button">참여하기</a>
 												</p>
@@ -298,92 +329,7 @@
 								
 								</section>
 							</div>
-							<!-- 
-							<div class="col-4 col-12-medium">
-								<section>
-									<header>
-										<h2>What's this all about?</h2>
-									</header>
-									<a href="#" class="image featured"><img src="images/pic10.jpg" alt="" /></a>
-									<p>
-										This is <strong>Dopetrope</strong> a free, fully responsive HTML5 site template by
-										<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a> It's released for free under
-										the <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for any personal or commercial project &ndash; just don't forget to credit us!
-									</p>
-									<footer>
-										<ul class="actions">
-											<li><a href="#" class="button">Find out more</a></li>
-										</ul>
-									</footer>
-								</section>
-							</div>
-							 -->
-							 <!-- 
-							<div class="col-4 col-6-medium col-12-small">
-								<section>
-									<header>
-										<h2>Tempus consequat</h2>
-									</header>
-									<ul class="divided">
-										<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-										<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-										<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-										<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-										<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-										<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-									</ul>
-								</section>
-							</div>
-							 -->
-							 <!-- 
-							<div class="col-4 col-6-medium col-12-small">
-								<section>
-									<header>
-										<h2>Ipsum et phasellus</h2>
-									</header>
-									<ul class="divided">
-										<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-										<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-										<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-										<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-										<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-										<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-4 col-12-medium">
-								<section>
-									<header>
-										<h2>Vitae tempor lorem</h2>
-									</header>
-									<ul class="social">
-										<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
-										<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
-										<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
-										<li><a class="icon brands fa-tumblr" href="#"><span class="label">Tumblr</span></a></li>
-										<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
-									</ul>
-									<ul class="contact">
-										<li>
-											<h3>Address</h3>
-											<p>
-												Untitled Incorporated<br />
-												1234 Somewhere Road Suite<br />
-												Nashville, TN 00000-0000
-											</p>
-										</li>
-										<li>
-											<h3>Mail</h3>
-											<p><a href="#">someone@untitled.tld</a></p>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<p>(800) 000-0000</p>
-										</li>
-									</ul>
-								</section>
-							</div>
-							 -->
+							
 							<div class="col-12">
 
 								<!-- Copyright -->
