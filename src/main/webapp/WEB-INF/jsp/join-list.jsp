@@ -246,7 +246,7 @@ $(document).ready(function() {
 							
 							<footer>
 								<ul class="actions">
-									<li><a href="#" class="button large">조회하기</a></li>
+									<li><a href="/JoinList" class="button large">조회하기</a></li>
 									<li><a href="/JoinInsert" class="button alt large">방만들기</a></li>
 								</ul>
 							</footer>
