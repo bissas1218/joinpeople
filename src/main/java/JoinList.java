@@ -35,6 +35,44 @@ public class JoinList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//System.out.println(request.getParameter("gender"));
+		
+		/* 검색지역 조건 */
+		String[] searchAreaList = request.getParameterValues("search-area");
+		String searchAreaSQL = "";
+		if(searchAreaList != null && !searchAreaList[0].equals("all")) {
+			searchAreaSQL = "and ";
+			for(int i=0; i<searchAreaList.length; i++) {
+				//System.out.println(searchAreaList[i]);
+				if(i > 0) {
+					searchAreaSQL += "or ";
+				}
+				searchAreaSQL += "join_area like '%," + searchAreaList[i] + "%' ";
+				request.setAttribute("area_"+searchAreaList[i], searchAreaList[i]);
+			}
+			
+		}else {
+			request.setAttribute("area_all", "all");
+		}
+		//System.out.println(searchSQL);
+		
+		//System.out.println(request.getParameter("gender"));
+		String searchGender = request.getParameter("gender");
+		String searchGenderSQL = "";
+		/* 검색성별 조건 */
+		if(searchGender != null && !searchGender.equals("all")) {
+			//System.out.println(searchGender);
+			searchGenderSQL = "and gender = '" +searchGender+ "' ";
+			if(searchGender.equals("male")) {
+				request.setAttribute("gender_male", "male");
+			}else if(searchGender.equals("female")) {
+				request.setAttribute("gender_female", "female");
+			}
+		}else {
+			request.setAttribute("gender_all", "all");
+		}
+		//System.out.println(searchGenderSQL);
+		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;
@@ -42,21 +80,24 @@ public class JoinList extends HttpServlet {
 		ResultSet rs2 = null;
 		
 		try {
-			String sql = "select seq, join_name, anyone_chk, join_date, join_area, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, stroke_num from join_main "
+			String sql = "select seq, join_name, anyone_chk, join_date, join_area, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, stroke_num from join_main where 1=1 "
+					+ searchAreaSQL
+					+ searchGenderSQL
 					+ "order by SUBSTRING_INDEX(join_date, '-', 1) asc, cast(SUBSTRING_INDEX(SUBSTRING_INDEX(join_date, '-', -2), '-', 1) as unsigned) asc, cast(SUBSTRING_INDEX(join_date, '-', -1) as unsigned) asc";
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			List<JoinMainVO> joinList = new ArrayList<JoinMainVO>();
 			
 			while(rs.next()) {
-				System.out.println("=>"+rs.getString(5).substring(1));
+				//System.out.println("=>"+rs.getString(5).substring(1));
 				String[] areaList = rs.getString(5).substring(1).split(",");
-				System.out.println("==>"+areaList);
+				//System.out.println("==>"+areaList);
 				
 				String areaListStr = "";
 				for(int i=0; i<areaList.length; i++) {
-					System.out.println(areaList[i]);
+					//System.out.println(areaList[i]);
 					sql = "select name from do_si_gun where code = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, areaList[i]);

@@ -352,7 +352,7 @@
 										
 										<!-- 성별 -->
 										<div class="col-2 col-4-small">
-											<input type="radio" id="gender-not" name="gender" value="not" checked>
+											<input type="radio" id="gender-not" name="gender" value="all" checked>
 											<label for="gender-not">성별무관</label>
 										</div>
 										<div class="col-2 col-4-small">

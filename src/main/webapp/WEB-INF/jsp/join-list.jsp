@@ -77,7 +77,7 @@ $(document).ready(function() {
 						
 							<div class="col-4 col-12-medium">
 							<section class="first">
-								<form method="post" action="#">
+								<form method="get" action="/JoinList" name="joinSearchFrm" id="joinSearchFrm">
 									<div class="row">
 									    <!-- 찾기 
 										<div class="col-12 col-12-small">
@@ -128,117 +128,106 @@ $(document).ready(function() {
 										
 										<!-- Break -->
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-all" name="search-area" value="all" checked>
+											<input type="checkbox" id="search-area-all" name="search-area" value="all" <c:if test="${not empty area_all}">checked</c:if> >
 											<label for="search-area-all">전국</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-11" name="search-area" value="11">
+											<input type="checkbox" id="search-area-11" name="search-area" value="11" <c:if test="${not empty area_11}">checked</c:if> >
 											<label for="search-area-11">서울</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-26" name="search-area" value="26">
+											<input type="checkbox" id="search-area-26" name="search-area" value="26" <c:if test="${not empty area_26}">checked</c:if> >
 											<label for="search-area-26">부산</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-27" name="search-area" value="27">
+											<input type="checkbox" id="search-area-27" name="search-area" value="27" <c:if test="${not empty area_27}">checked</c:if>>
 											<label for="search-area-27">대구</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-28" name="search-area" value="28">
+											<input type="checkbox" id="search-area-28" name="search-area" value="28" <c:if test="${not empty area_28}">checked</c:if>>
 											<label for="search-area-28">인천</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-29" name="search-area" value="29">
+											<input type="checkbox" id="search-area-29" name="search-area" value="29" <c:if test="${not empty area_29}">checked</c:if>>
 											<label for="search-area-29">광주</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-30" name="search-area" value="30">
+											<input type="checkbox" id="search-area-30" name="search-area" value="30" <c:if test="${not empty area_30}">checked</c:if>>
 											<label for="search-area-30">대전</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-31" name="search-area" value="31">
+											<input type="checkbox" id="search-area-31" name="search-area" value="31" <c:if test="${not empty area_31}">checked</c:if>>
 											<label for="search-area-31">울산</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-3611" name="search-area" value="3611">
+											<input type="checkbox" id="search-area-3611" name="search-area" value="3611" <c:if test="${not empty area_3611}">checked</c:if>>
 											<label for="search-area-3611">세종</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-41" name="search-area" value="41">
+											<input type="checkbox" id="search-area-41" name="search-area" value="41" <c:if test="${not empty area_41}">checked</c:if>>
 											<label for="search-area-41">경기</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-43" name="search-area" value="43">
+											<input type="checkbox" id="search-area-43" name="search-area" value="43" <c:if test="${not empty area_43}">checked</c:if>>
 											<label for="search-area-43">충북</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-44" name="search-area" value="44">
+											<input type="checkbox" id="search-area-44" name="search-area" value="44" <c:if test="${not empty area_44}">checked</c:if>>
 											<label for="search-area-44">충남</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-46" name="search-area" value="46">
+											<input type="checkbox" id="search-area-46" name="search-area" value="46" <c:if test="${not empty area_46}">checked</c:if>>
 											<label for="search-area-46">전남</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-47" name="search-area" value="47">
+											<input type="checkbox" id="search-area-47" name="search-area" value="47" <c:if test="${not empty area_47}">checked</c:if>>
 											<label for="search-area-47">경북</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-48" name="search-area" value="48">
+											<input type="checkbox" id="search-area-48" name="search-area" value="48" <c:if test="${not empty area_48}">checked</c:if>>
 											<label for="search-area-48">경남</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-50" name="search-area" value="50">
+											<input type="checkbox" id="search-area-50" name="search-area" value="50" <c:if test="${not empty area_50}">checked</c:if>>
 											<label for="search-area-50">제주</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-51" name="search-area" value="51">
+											<input type="checkbox" id="search-area-51" name="search-area" value="51" <c:if test="${not empty area_51}">checked</c:if>>
 											<label for="search-area-51">강원도</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="search-area-52" name="search-area" value="52">
+											<input type="checkbox" id="search-area-52" name="search-area" value="52" <c:if test="${not empty area_52}">checked</c:if>>
 											<label for="search-area-52">전북도</label>
 										</div>
 										
-										<!-- Break
+										<!-- Break -->
 										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-											<label for="demo-priority-low">성별무관</label>
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-normal" name="demo-priority">
-											<label for="demo-priority-normal">남성</label>
+											<input type="radio" id="gender-not" name="gender" value="all" <c:if test="${not empty gender_all}">checked</c:if>>
+											<label for="gender-not">성별무관</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="radio" id="demo-priority-high" name="demo-priority">
-											<label for="demo-priority-high">여성</label>
+											<input type="radio" id="gender-male" name="gender" value="male" <c:if test="${not empty gender_male}">checked</c:if>>
+											<label for="gender-male">남성</label>
 										</div>
-										 -->
-										<!-- Break
-										<div class="col-3 col-6-small">
-											<input type="radio" id="demo-priority-low2" name="demo-priority2" checked>
-											<label for="demo-priority-low2">18홀</label>
-										</div>
-										<div class="col-3 col-6-small">
-											<input type="radio" id="demo-priority-normal2" name="demo-priority2">
-											<label for="demo-priority-normal2">9홀</label>
-										</div>
-										 -->
-										
-										<!--
-										<div class="col-12">
-											<input type="text" name="subject" id="subject" placeholder="Subject" />
-										</div>
-										<div class="col-12">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
+										<div class="col-2 col-4-small">
+											<input type="radio" id="gender-female" name="gender" value="female" <c:if test="${not empty gender_female}">checked</c:if>>
+											<label for="gender-female">여성</label>
 										</div>
 										
-										<div class="col-12">
-											<ul class="actions">
-												<li><input type="submit" value="조회하기" /></li>
-												<li><input type="reset" value="Clear Form" class="alt" /></li>
-											</ul>
-										</div>-->
+										<!-- 시간대 -->
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="teeup_time-1" name="teeup_time" value="1" checked>
+											<label for="teeup_time-1">1부</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="teeup_time-2" name="teeup_time" value="2">
+											<label for="teeup_time-2">2부</label>
+										</div>
+										<div class="col-2 col-4-small">
+											<input type="checkbox" id="teeup_time-3" name="teeup_time" value="3">
+											<label for="teeup_time-3">3부</label>
+										</div>
+										
 									</div>
 								</form>
 								</section>
@@ -246,7 +235,7 @@ $(document).ready(function() {
 							
 							<footer>
 								<ul class="actions">
-									<li><a href="/JoinList" class="button large">조회하기</a></li>
+									<li><a href="javascript:document.joinSearchFrm.submit();" class="button large">조회하기</a></li>
 									<li><a href="/JoinInsert" class="button alt large">방만들기</a></li>
 								</ul>
 							</footer>
