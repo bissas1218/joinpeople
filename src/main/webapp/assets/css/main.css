@@ -1209,7 +1209,7 @@ input[type="radio"] + label:before {
 						}
 
 				.row {
-					margin-top: -40px;
+					margin-top: -20px;
 					margin-left: -40px;
 				}
 
@@ -1459,7 +1459,7 @@ input[type="radio"] + label:before {
 				}
 
 					.row > * {
-						padding: 20px 0 0 20px;
+						padding: 10px 0 0 20px;
 					}
 
 					.row.gtr-uniform {

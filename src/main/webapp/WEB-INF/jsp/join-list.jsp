@@ -45,6 +45,15 @@ $(document).ready(function() {
 	});
 });
 
+function searchFrmSubmit(){
+	if( !$("#teeup_time_1").is(':checked') && !$("#teeup_time_2").is(':checked') && !$("#teeup_time_3").is(':checked') ){
+		$("#teeup_time").show();
+	}else{
+		document.joinSearchFrm.submit();
+	}
+	
+}
+
 </script>
 		
 	</head>
@@ -79,52 +88,6 @@ $(document).ready(function() {
 							<section class="first">
 								<form method="get" action="/JoinList" name="joinSearchFrm" id="joinSearchFrm">
 									<div class="row">
-									    <!-- 찾기 
-										<div class="col-12 col-12-small">
-											<input type="text" name="name" id="name" placeholder="방제목" />
-										</div>-->
-										<!-- 
-										<div class="col-3 col-12-small">
-											<ul class="actions">
-												<li><input type="submit" value="조회하기" /></li>
-											</ul>
-										</div>
-										 -->
-										 
-										<!-- 지역 
-										<div class="col-6 col-12-small">
-											<select>
-												<option>지역선택</option>
-												<option value="1100000000">서울특별시</option>
-												<option value="2600000000">부산광역시</option>
-												<option value="2700000000">대구광역시</option>
-												<option value="2800000000">인천광역시</option>
-												<option value="2900000000">광주광역시</option>
-												<option value="3000000000">대전광역시</option>
-												<option value="3100000000">울산광역시</option>
-												<option value="3611000000">세종특별자치시</option>
-												<option value="4100000000">경기도</option>
-												<option value="4300000000">충청북도</option>
-												<option value="4400000000">충청남도</option>
-												<option value="4600000000">전라남도</option>
-												<option value="4700000000">경상북도</option>
-												<option value="4800000000">경상남도</option>
-												<option value="5000000000">제주특별자치도</option>
-												<option value="5100000000">강원특별자치도</option>
-												<option value="5200000000">전북특별자치도</option>
-											</select>
-										</div>-->
-										
-										<!-- 일자선택
-										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인년도" maxlength="4" />
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인월" />
-										</div>
-										<div class="col-2 col-4-small">
-											<input type="text" name="name" id="name" placeholder="조인일" />
-										</div> -->
 										
 										<!-- Break -->
 										<div class="col-2 col-4-small">
@@ -214,28 +177,38 @@ $(document).ready(function() {
 											<label for="gender-female">여성</label>
 										</div>
 										
+										<!-- 조인일 -->
+										<div class="col-6 col-12-small">
+											<input type="text" name="" id="" placeholder="조인할 날짜 (ex 2025-12-12)" />
+										</div>
+										
 										<!-- 시간대 -->
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="teeup_time-1" name="teeup_time" value="1" checked>
-											<label for="teeup_time-1">1부</label>
+											<input type="checkbox" id="teeup_time_1" name="teeup_time_1" value="1" <c:if test="${not empty teeup_time_1}">checked</c:if>>
+											<label for="teeup_time_1">1부</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="teeup_time-2" name="teeup_time" value="2">
-											<label for="teeup_time-2">2부</label>
+											<input type="checkbox" id="teeup_time_2" name="teeup_time_2" value="2" <c:if test="${not empty teeup_time_2}">checked</c:if>>
+											<label for="teeup_time_2">2부</label>
 										</div>
 										<div class="col-2 col-4-small">
-											<input type="checkbox" id="teeup_time-3" name="teeup_time" value="3">
-											<label for="teeup_time-3">3부</label>
+											<input type="checkbox" id="teeup_time_3" name="teeup_time_3" value="3" <c:if test="${not empty teeup_time_3}">checked</c:if>>
+											<label for="teeup_time_3">3부</label>
+										</div>
+										
+										<div class="col-6 col-12-small">
+											<p id="teeup_time" class="warning" style="display:none;">최소한 한개의 티업시간을 선택해야 합니다!</p>
 										</div>
 										
 									</div>
+									<input type="hidden" name="searchFrmSubmit" id="searchFrmSubmit" value="true" />
 								</form>
 								</section>
 							</div>
 							
 							<footer>
 								<ul class="actions">
-									<li><a href="javascript:document.joinSearchFrm.submit();" class="button large">조회하기</a></li>
+									<li><a href="javascript:searchFrmSubmit();" class="button large">조회하기</a></li>
 									<li><a href="/JoinInsert" class="button alt large">방만들기</a></li>
 								</ul>
 							</footer>

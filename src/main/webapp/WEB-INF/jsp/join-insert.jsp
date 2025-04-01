@@ -376,16 +376,16 @@
 										
 										<!-- 시간대 -->
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup_time-1" name="teeup_time" value="1" checked>
-											<label for="teeup_time-1">1부</label>
+											<input type="radio" id="teeup_time_1" name="teeup_time" value="1" checked>
+											<label for="teeup_time_1">1부</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup_time-2" name="teeup_time" value="2">
-											<label for="teeup_time-2">2부</label>
+											<input type="radio" id="teeup_time_2" name="teeup_time" value="2">
+											<label for="teeup_time_2">2부</label>
 										</div>
 										<div class="col-4 col-4-small">
-											<input type="radio" id="teeup_time-3" name="teeup_time" value="3">
-											<label for="teeup_time-3">3부</label>
+											<input type="radio" id="teeup_time_3" name="teeup_time" value="3">
+											<label for="teeup_time_3">3부</label>
 										</div>
 										
 										<!-- 희망그린피 -->

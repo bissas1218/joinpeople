@@ -35,13 +35,15 @@ public class JoinList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String searchFrmSubmit = request.getParameter("searchFrmSubmit");
+		
 		//System.out.println(request.getParameter("gender"));
 		
 		/* 검색지역 조건 */
 		String[] searchAreaList = request.getParameterValues("search-area");
 		String searchAreaSQL = "";
 		if(searchAreaList != null && !searchAreaList[0].equals("all")) {
-			searchAreaSQL = "and ";
+			searchAreaSQL = "and (";
 			for(int i=0; i<searchAreaList.length; i++) {
 				//System.out.println(searchAreaList[i]);
 				if(i > 0) {
@@ -50,16 +52,18 @@ public class JoinList extends HttpServlet {
 				searchAreaSQL += "join_area like '%," + searchAreaList[i] + "%' ";
 				request.setAttribute("area_"+searchAreaList[i], searchAreaList[i]);
 			}
+			searchAreaSQL += ") ";
 			
 		}else {
 			request.setAttribute("area_all", "all");
 		}
 		//System.out.println(searchSQL);
 		
+		/* 검색성별 조건 */
 		//System.out.println(request.getParameter("gender"));
 		String searchGender = request.getParameter("gender");
 		String searchGenderSQL = "";
-		/* 검색성별 조건 */
+		
 		if(searchGender != null && !searchGender.equals("all")) {
 			//System.out.println(searchGender);
 			searchGenderSQL = "and gender = '" +searchGender+ "' ";
@@ -73,6 +77,48 @@ public class JoinList extends HttpServlet {
 		}
 		//System.out.println(searchGenderSQL);
 		
+		/* 조인 시간대 */
+		//System.out.println(request.getParameter("searchFrmSubmit") + ", " + request.getParameter("teeup_time_2"));
+		String teeupTimeSQL = "";
+		if(searchFrmSubmit != null && searchFrmSubmit.equals("true")) {
+			teeupTimeSQL = "and (";
+			
+			String teeup_time_1 = request.getParameter("teeup_time_1");
+			String teeup_time_2 = request.getParameter("teeup_time_2");
+			String teeup_time_3 = request.getParameter("teeup_time_3");
+			
+			if(teeup_time_1 != null && teeup_time_1.equals("1")) {
+				teeupTimeSQL += "teeup_time = 1";
+				request.setAttribute("teeup_time_1", "1");	
+				
+				if(teeup_time_2 != null || teeup_time_3 != null) {
+					teeupTimeSQL += " or ";
+				}
+			}
+			
+			if(teeup_time_2 != null && teeup_time_2.equals("2")) {
+				teeupTimeSQL += "teeup_time = 2";
+				request.setAttribute("teeup_time_2", "2");	
+				
+				if(teeup_time_3 != null) {
+					teeupTimeSQL += " or ";
+				}
+			}
+			
+			if(teeup_time_3 != null && teeup_time_3.equals("3")) {
+				teeupTimeSQL += "teeup_time = 3";
+				request.setAttribute("teeup_time_3", "3");	
+			}
+			
+			teeupTimeSQL += ") ";
+			
+		}else {
+			request.setAttribute("teeup_time_1", "1");
+			request.setAttribute("teeup_time_2", "2");
+			request.setAttribute("teeup_time_3", "3");
+		}
+		System.out.println(teeupTimeSQL);
+		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;
@@ -83,6 +129,7 @@ public class JoinList extends HttpServlet {
 			String sql = "select seq, join_name, anyone_chk, join_date, join_area, gender, hole_num, teeup_time, start_greenfee, end_greenfee, people_num, stroke_num from join_main where 1=1 "
 					+ searchAreaSQL
 					+ searchGenderSQL
+					+ teeupTimeSQL
 					+ "order by SUBSTRING_INDEX(join_date, '-', 1) asc, cast(SUBSTRING_INDEX(SUBSTRING_INDEX(join_date, '-', -2), '-', 1) as unsigned) asc, cast(SUBSTRING_INDEX(join_date, '-', -1) as unsigned) asc";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
