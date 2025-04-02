@@ -43,6 +43,13 @@ $(document).ready(function() {
 			$("#search-area-all").prop('checked', false);
 		}
 	});
+	
+	$('#join_date_start').on('input', function() {
+        console.log('Input value changed to: ' + $(this).val().length);
+        if($(this).val().length === 4){
+        	$(this).val($(this).val() + '-');
+        }
+    });
 });
 
 function searchFrmSubmit(){
@@ -178,8 +185,11 @@ function searchFrmSubmit(){
 										</div>
 										
 										<!-- 조인일 -->
-										<div class="col-6 col-12-small">
-											<input type="text" name="" id="" placeholder="조인할 날짜 (ex 2025-12-12)" />
+										<div class="col-3 col-6-small">
+											<input type="date" name="join_date_start" id="join_date_start" value="2025-04-02" min="2025-04-02" max="2026-04-02" />
+										</div>
+										<div class="col-3 col-6-small">
+											<input type="date" name="join_date_end" id="join_date_end" value="2025-10-02" min="2025-04-02" max="2026-10-02" />
 										</div>
 										
 										<!-- 시간대 -->
