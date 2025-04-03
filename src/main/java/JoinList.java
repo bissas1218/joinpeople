@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +120,25 @@ public class JoinList extends HttpServlet {
 		}
 		System.out.println(teeupTimeSQL);
 		
+		/* 검색날짜 */
+		String searchDateSQL = "";
+		LocalDate ldate = LocalDate.now();
+		if(request.getParameter("join_date_start") == null) {
+			
+			request.setAttribute("join_date_start", ldate);
+			request.setAttribute("join_date_end", ldate.plusMonths(6));
+			request.setAttribute("join_date_min", ldate);
+			request.setAttribute("join_date_max", ldate.plusYears(1));
+		}else {
+			System.out.println(request.getParameter("join_date_start"));
+			request.setAttribute("join_date_start", request.getParameter("join_date_start"));
+			request.setAttribute("join_date_end", request.getParameter("join_date_end"));
+			request.setAttribute("join_date_min", ldate);
+			request.setAttribute("join_date_max", ldate.plusYears(1));
+			searchDateSQL = "and date_format(join_date, '%Y-%m-%d') between date_format('"+request.getParameter("join_date_start")+"', '%Y-%m-%d') and date_format('"+request.getParameter("join_date_end")+"', '%Y-%m-%d') ";
+		}
+		
+		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();
 		PreparedStatement pstmt = null;
@@ -130,6 +150,7 @@ public class JoinList extends HttpServlet {
 					+ searchAreaSQL
 					+ searchGenderSQL
 					+ teeupTimeSQL
+					+ searchDateSQL
 					+ "order by SUBSTRING_INDEX(join_date, '-', 1) asc, cast(SUBSTRING_INDEX(SUBSTRING_INDEX(join_date, '-', -2), '-', 1) as unsigned) asc, cast(SUBSTRING_INDEX(join_date, '-', -1) as unsigned) asc";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);

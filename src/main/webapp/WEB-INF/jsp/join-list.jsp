@@ -186,10 +186,10 @@ function searchFrmSubmit(){
 										
 										<!-- 조인일 -->
 										<div class="col-3 col-6-small">
-											<input type="date" name="join_date_start" id="join_date_start" value="2025-04-02" min="2025-04-02" max="2026-04-02" />
+											<input type="date" name="join_date_start" id="join_date_start" value="<c:out value="${join_date_start}"/>" min="<c:out value="${join_date_min}"/>" max="<c:out value="${join_date_max}"/>" />
 										</div>
 										<div class="col-3 col-6-small">
-											<input type="date" name="join_date_end" id="join_date_end" value="2025-10-02" min="2025-04-02" max="2026-10-02" />
+											<input type="date" name="join_date_end" id="join_date_end" value="<c:out value="${join_date_end}"/>" min="<c:out value="${join_date_min}"/>" max="<c:out value="${join_date_max}"/>" />
 										</div>
 										
 										<!-- 시간대 -->
