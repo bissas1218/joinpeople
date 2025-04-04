@@ -118,7 +118,7 @@ public class JoinList extends HttpServlet {
 			request.setAttribute("teeup_time_2", "2");
 			request.setAttribute("teeup_time_3", "3");
 		}
-		System.out.println(teeupTimeSQL);
+		//System.out.println(teeupTimeSQL);
 		
 		/* 검색날짜 */
 		String searchDateSQL = "";
@@ -130,7 +130,7 @@ public class JoinList extends HttpServlet {
 			request.setAttribute("join_date_min", ldate);
 			request.setAttribute("join_date_max", ldate.plusYears(1));
 		}else {
-			System.out.println(request.getParameter("join_date_start"));
+		//	System.out.println(request.getParameter("join_date_start"));
 			request.setAttribute("join_date_start", request.getParameter("join_date_start"));
 			request.setAttribute("join_date_end", request.getParameter("join_date_end"));
 			request.setAttribute("join_date_min", ldate);
