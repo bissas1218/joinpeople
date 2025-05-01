@@ -117,6 +117,7 @@ public class JoinList extends HttpServlet {
 			request.setAttribute("teeup_time_1", "1");
 			request.setAttribute("teeup_time_2", "2");
 			request.setAttribute("teeup_time_3", "3");
+			teeupTimeSQL += "and (teeup_time = 1 or teeup_time = 2 or teeup_time = 3) ";
 		}
 		//System.out.println(teeupTimeSQL);
 		
@@ -129,6 +130,7 @@ public class JoinList extends HttpServlet {
 			request.setAttribute("join_date_end", ldate.plusMonths(6));
 			request.setAttribute("join_date_min", ldate);
 			request.setAttribute("join_date_max", ldate.plusYears(1));
+			searchDateSQL = "and date_format(join_date, '%Y-%m-%d') between date_format('"+ldate+"', '%Y-%m-%d') and date_format('"+ldate.plusMonths(6)+"', '%Y-%m-%d') ";
 		}else {
 		//	System.out.println(request.getParameter("join_date_start"));
 			request.setAttribute("join_date_start", request.getParameter("join_date_start"));
@@ -137,7 +139,6 @@ public class JoinList extends HttpServlet {
 			request.setAttribute("join_date_max", ldate.plusYears(1));
 			searchDateSQL = "and date_format(join_date, '%Y-%m-%d') between date_format('"+request.getParameter("join_date_start")+"', '%Y-%m-%d') and date_format('"+request.getParameter("join_date_end")+"', '%Y-%m-%d') ";
 		}
-		
 		
 		DBConnection dbconn = new DBConnection();
 		Connection con = dbconn.dbConn();

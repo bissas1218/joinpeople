@@ -78,6 +78,7 @@ function searchFrmSubmit(){
 							<ul>
 								<li class="current"><a href="/JoinList">Home</a></li>
 								<li><a href="left-sidebar.html">로그인</a></li>
+								<li><a href="/MemberInsert">회원가입</a></li>
 								<li><a href="right-sidebar.html">정보수정</a></li>
 								<li><a href="no-sidebar.html">공지사항</a></li>
 								<li><a href="no-sidebar.html">내방관리</a></li>
