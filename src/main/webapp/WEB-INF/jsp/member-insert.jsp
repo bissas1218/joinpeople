@@ -26,6 +26,12 @@
 			return false;
 		}
 		
+		if($("#password").val() === ''){
+			$("#passwordWarning").show();
+			$("#password").focus();
+			return false;
+		}
+		
 		return true;
 	}
 	
@@ -68,6 +74,12 @@
 										<div class="col-12 col-12-small">
 											<input type="text" name="identity" id="identity" placeholder="아이디" maxlength="10" />
 											<p id="identityWarning" class="warning" style="display:none;">아이디를 입력하세요!</p> 
+										</div>
+										
+										<!-- 비밀번호 -->
+										<div class="col-12 col-12-small">
+											<input type="password" name="password" id="password" placeholder="비밀번호" maxlength="20" />
+											<p id="passwordWarning" class="warning" style="display:none;">비밀번호를 입력하세요!</p> 
 										</div>
 										
 									</div>
